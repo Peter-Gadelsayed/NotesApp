@@ -1,0 +1,32 @@
+nav {
+    box-shadow: 3px 3px 10px #EEE;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 22px;
+    padding: 10px;
+    font-family: "Caesar Dressing", system-ui;
+}
+
+nav ul li {
+    transition: .2s linear;
+    cursor: pointer;
+}
+
+nav ul .loginButton {
+    border: 1px solid #000;
+    &:hover {
+        background-color: #0e9594;
+        a {
+            color: #FFF;
+        }
+    }
+}
+
+nav ul .signUpButton {
+    background-color: #0e9594;
+    a {
+        color: #FFF;
+    }
+}
