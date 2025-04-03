@@ -1,32 +1,48 @@
+@font-face {
+  font-family: "Caesar-Dressing";
+  src: url("../../../assets/fonts/Caesar_Dressing/CaesarDressing-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Merienda-var";
+  src: url("../../../assets/fonts/Merienda/Merienda-VariableFont_wght.ttf") format("truetype");
+}
+
 nav {
-    box-shadow: 3px 3px 10px #EEE;
+  box-shadow: 3px 3px 10px #EEE;
 }
 
 .navbar-brand {
-    font-weight: bold;
-    font-size: 22px;
-    padding: 10px;
-    font-family: "Caesar Dressing", system-ui;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 10px;
+  font-family: "Caesar-Dressing";
 }
 
 nav ul li {
-    transition: .2s linear;
-    cursor: pointer;
+  transition: .2s linear;
+  cursor: pointer;
+  font-family: "Merienda-var";
+  font-weight: 500;
 }
 
 nav ul .loginButton {
-    border: 1px solid #000;
-    &:hover {
-        background-color: #0e9594;
-        a {
-            color: #FFF;
-        }
+  border: 1px solid #000;
+
+  &:hover {
+    background-color: #0e9594;
+
+    a {
+      color: #FFF;
     }
+  }
 }
 
 nav ul .signUpButton {
-    background-color: #0e9594;
-    a {
-        color: #FFF;
-    }
+  background-color: #0e9594;
+
+  a {
+    color: #FFF;
+  }
 }
