@@ -1,47 +1,56 @@
-// Define Color Variables
-$light-brown: #F8EEE2;
-$dark-brown: #4D2114;
-$darker-brown: #3a150a;
-$light-hover: #e9cdb2;
+$primary-color: #FF6B00;
+$text-color: #3D2B1F;
 
-.navbar {
-  background-color: #f8f8f8;
-}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
-nav {
-  box-shadow: 3px 3px 10px #EEE;
-}
-
-.navbar-brand {
-  font-weight: bold;
-  font-size: 22px;
-  padding: 10px;
-  font-family: "Caesar-Dressing";
-}
-
-nav ul li {
-  transition: .2s linear;
-  cursor: pointer;
-  font-family: "Merienda-var";
-  font-weight: 500;
-}
-
-.loginButton {
-  border: 1px solid $light-hover;
-  background-color: $light-brown;
-
-  &:hover {
-    background-color: $light-hover;
-
+  .nav-logo {
+    .logo {
+      height: 40px;
+    }
   }
-}
 
-.signUpButton {
-  background-color: $dark-brown;
-  color: #FFF;
+  .nav-links {
+    display: flex;
+    gap: 2rem;
 
-  &:hover {
-    background-color: $darker-brown;
+    a {
+      text-decoration: none;
+      color: $text-color;
+      font-weight: 500;
 
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-signup {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+    }
+
+    .btn-login {
+      background-color: transparent;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+    }
   }
 }
