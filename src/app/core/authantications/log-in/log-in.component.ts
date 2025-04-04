@@ -50,7 +50,9 @@ export class LogInComponent implements OnInit {
         });
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
-        window.location.replace('/notes');
+        setTimeout(() => {
+          window.location.replace('/notes');
+        }, 2000); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
