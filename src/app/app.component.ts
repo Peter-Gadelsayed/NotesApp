@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NavBarComponent } from "./shared/nav-bar/nav-bar.component";
-import { HomeComponent } from "./features/notes/home/home.component";
 
 @Component({
   selector: 'app-root',
