@@ -46,7 +46,7 @@ export class LogInComponent implements OnInit {
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-bottom-left' // Custom position
+          positionClass: 'toast-top-right' // Custom position
         });
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
@@ -62,7 +62,7 @@ export class LogInComponent implements OnInit {
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-bottom-left' // Custom position
+          positionClass: 'toast-top-right' // Custom position
         });
       }
     });

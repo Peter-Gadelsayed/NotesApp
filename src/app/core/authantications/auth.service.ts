@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse } from 'src/app/models/auth-response';
 import { environment } from 'src/environments/environment';
 
@@ -9,8 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private apiUrl: string = environment.baseUrl;
+  private loggedIn = new BehaviorSubject<boolean>(this.isLogged());
+
+  isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient) { }
+
   login(credentials: { email: string; password: string }): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
