@@ -9,9 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private apiUrl: string = environment.baseUrl;
-  private loggedIn = new BehaviorSubject<boolean>(this.isLogged());
-
-  isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient) { }
 

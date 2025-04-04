@@ -51,7 +51,7 @@ export class LogInComponent implements OnInit {
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
-          this.router.navigate(['/notes']);
+          this.router.navigateByUrl('/notes');
         }, 500);
       },
       error: (err) => {

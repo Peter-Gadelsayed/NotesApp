@@ -7,7 +7,7 @@ import { AuthService } from '../../core/authantications/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit, OnChanges {
+export class NavBarComponent implements OnInit {
 
   isMenuOpen = false;
   isLogged = false;
@@ -16,13 +16,6 @@ export class NavBarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.isLogged = this.authservice.isLogged()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.authservice.isLoggedIn$.subscribe(status => {
-      this.isLogged = status;
-      console.log('Navbar - Logged in changed to:', status);
-    });
   }
 
   toggleMenu() {
