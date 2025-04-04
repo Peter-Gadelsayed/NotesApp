@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-log-in',
@@ -28,6 +29,8 @@ export class LogInComponent {
     if (this.loginForm.invalid) {
       return;
     }
+
+    const apiUrl = environment.baseUrl;
 
     console.log('Form submitted:', this.loginForm.value);
     // Perform login logic here
