@@ -1,0 +1,44 @@
+// Define Color Variables
+$light-brown: #F8EEE2;
+$dark-brown: #FF6B00;
+$darker-brown: #3D2B1F;
+$light-hover: #e9cdb2;
+// General Styling
+.bg-light-brown {
+  background-color: $light-brown;
+}
+
+.bg-dark-brown {
+  background-color: $dark-brown;
+}
+
+.text-dark-brown {
+  color: $dark-brown;
+}
+
+// Button Styling
+.btn-dark-brown {
+  background-color: $dark-brown;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: $darker-brown;
+  }
+}
+
+.btn-light-brown {
+  background-color: $light-brown;
+  color: $dark-brown;
+  border: none;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+}
+
+// Card Styling
+.card {
+  border-radius: 10px;
+  padding: 20px;
+}
