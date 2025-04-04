@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
+ constructor(private router:Router, private authService: AuthService) {}
 
+ navigateToCreate() {
+  if (this.authService.isLogged()) {
+    this.router.navigate(['/create-note']);
+  } else {
+    this.router.navigate(['/login']);
+  }
 }
+}
+
