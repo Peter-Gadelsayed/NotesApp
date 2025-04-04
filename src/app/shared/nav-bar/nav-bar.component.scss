@@ -43,6 +43,7 @@ $text-color: #3D2B1F;
       text-decoration: none;
       color: $text-color;
       font-weight: 500;
+      cursor: pointer;
 
       &:hover {
         color: $primary-color;
