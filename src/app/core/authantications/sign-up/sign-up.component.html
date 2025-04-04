@@ -11,27 +11,42 @@
             <label for="name" class="form-label">Full Name</label>
             <input type="text" id="name" class="form-control" formControlName="name"
               [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
-            <div class="invalid-feedback" *ngIf="submitted && f['name'].errors">
-              Name is required.
-            </div>
+            <div class="invalid-feedback" *ngIf="submitted && f['name'].errors">Name is required.</div>
           </div>
 
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" id="email" class="form-control" formControlName="email"
               [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
-            <div class="invalid-feedback" *ngIf="submitted && f['email'].errors">
-              Valid email is required.
-            </div>
+            <div class="invalid-feedback" *ngIf="submitted && f['email'].errors">Valid email is required.</div>
           </div>
 
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" id="password" class="form-control" formControlName="password"
               [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
-            <div class="invalid-feedback" *ngIf="submitted && f['password'].errors">
-              Password must be at least 6 characters.
-            </div>
+            <div class="invalid-feedback" *ngIf="submitted && f['password'].errors">Minimum 6 characters required.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" formControlName="phone"
+              [ngClass]="{ 'is-invalid': submitted && f['phone'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && f['phone'].errors">Valid phone number is required.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" id="age" class="form-control" formControlName="age"
+              [ngClass]="{ 'is-invalid': submitted && f['age'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && f['age'].errors">Valid age is required.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea id="address" class="form-control" rows="2" formControlName="address"
+              [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"></textarea>
+            <div class="invalid-feedback" *ngIf="submitted && f['address'].errors">Address is required.</div>
           </div>
 
           <button type="submit" class="btn btn-dark-brown w-100">Sign Up</button>
