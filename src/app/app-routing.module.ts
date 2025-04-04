@@ -4,15 +4,16 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { LogInComponent } from './core/authantications/log-in/log-in.component';
 import { SignUpComponent } from './core/authantications/sign-up/sign-up.component';
 import { LandingComponent } from './core/landing/landing.component';
-import { authGuard } from './auth.guard';
+import { authGuard } from './core/authantications/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LogInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'notes', loadChildren:() =>
-    import('./features/notes/notes.module').then((m)=>m.NotesModule),  canActivate:[authGuard]
+  {
+    path: 'notes', loadChildren: () =>
+      import('./features/notes/notes.module').then((m) => m.NotesModule), canActivate: [authGuard]
   },
   { path: '**', component: NotFoundComponent }
 ];
