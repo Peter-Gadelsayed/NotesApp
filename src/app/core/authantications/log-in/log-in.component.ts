@@ -41,16 +41,29 @@ export class LogInComponent implements OnInit {
 
     this.authservice.login(this.loginForm.value).subscribe({
       next: (response) => {
-        this.toastr.success('Login successful!');
+        this.toastr.success('Login successful!', 'Success', {
+          timeOut: 5000, // Toast duration
+          progressBar: true, // Show progress bar
+          closeButton: true, // Show close button
+          tapToDismiss: false, // Click does not dismiss
+          positionClass: 'toast-bottom-left' // Custom position
+        });
         localStorage.setItem('token', response.token);
+        this.authservice.isLogged = () => true;
         setTimeout(() => {
           this.router.navigate(['/notes']);
-        }, 5000);
+        }, 500);
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
-        this.toastr.error('Error', errorMessage);
+        this.toastr.error(errorMessage, 'Error', {
+          timeOut: 5000, // Toast duration
+          progressBar: true, // Show progress bar
+          closeButton: true, // Show close button
+          tapToDismiss: false, // Click does not dismiss
+          positionClass: 'toast-bottom-left' // Custom position
+        });
       }
     });
   }

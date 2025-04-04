@@ -27,6 +27,7 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
   isLogged(): boolean {
     if (localStorage.getItem("token") === null) {
       return false

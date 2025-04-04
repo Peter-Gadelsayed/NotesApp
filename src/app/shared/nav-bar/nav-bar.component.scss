@@ -7,7 +7,7 @@ $text-color: #3D2B1F;
   align-items: center;
   padding: 1rem 4rem;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1000;
 
@@ -72,6 +72,19 @@ $text-color: #3D2B1F;
       border: 1px solid $primary-color;
       color: $primary-color;
     }
+
+    .btn-logout {
+      background-color: red;
+      border: 1px solid red;
+      color: white;
+
+      &:hover {
+        background-color: darkred;
+        border: 1px solid darkred;
+        // color: black;
+
+      }
+    }
   }
 }
 
@@ -84,7 +97,8 @@ $text-color: #3D2B1F;
       display: block;
     }
 
-    .nav-links, .nav-buttons {
+    .nav-links,
+    .nav-buttons {
       display: none;
       position: fixed;
       top: 80px;
@@ -92,7 +106,7 @@ $text-color: #3D2B1F;
       right: 0;
       background-color: white;
       padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       flex-direction: column;
       gap: 1rem;
       text-align: center;

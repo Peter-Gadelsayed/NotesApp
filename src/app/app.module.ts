@@ -22,9 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000, positionClass: 'toast-top-right', preventDuplicates: true,
-    }),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

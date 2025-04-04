@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/authantications/auth.service';
 
 @Component({
@@ -7,10 +7,18 @@ import { AuthService } from '../../core/authantications/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent {
-  isMenuOpen = false;
+export class NavBarComponent implements OnInit {
 
-  constructor(private router:Router, private authService: AuthService) {}
+  isMenuOpen = false;
+  isLogged = false;
+
+  constructor(private router: Router, private authservice: AuthService) { }
+
+
+  ngOnInit(): void {
+    this.isLogged = this.authservice.isLogged()
+  }
+
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -24,8 +32,14 @@ export class NavBarComponent {
     this.router.navigate(['/login']);
   }
 
+  logoutClicked() {
+    this.authservice.logout();
+    this.router.navigate(['/login']);
+    this.isLogged = false;
+  }
+
   navigateToHome() {
-    if (this.authService.isLogged()) {
+    if (this.authservice.isLogged()) {
       this.router.navigate(['/notes']);
     } else {
       this.router.navigate(['/login']);
@@ -33,7 +47,7 @@ export class NavBarComponent {
   }
 
   navigateToCreate() {
-    if (this.authService.isLogged()) {
+    if (this.authservice.isLogged()) {
       this.router.navigate(['/create-note']);
     } else {
       this.router.navigate(['/login']);
