@@ -1,23 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent {
+export class LogInComponent implements OnInit {
 
-  loginForm: FormGroup;
-  submitted = false;
-
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authservice: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+  loginForm!: FormGroup;
+  submitted = false;
+  errorMessage!: string;
 
   get f() {
     return this.loginForm.controls;
@@ -30,10 +39,21 @@ export class LogInComponent {
       return;
     }
 
-    const apiUrl = environment.baseUrl;
-
-    console.log('Form submitted:', this.loginForm.value);
-    // Perform login logic here
+    this.authservice.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        this.toastr.success('Login successful!');
+        localStorage.setItem('token', response.token);
+        setTimeout(() => {
+          this.router.navigate(['/notes']);
+        }, 5000);
+      },
+      error: (error) => {
+        const errorMessage = error.error?.message || 'Login failed. Please try again.';
+        this.toastr.error(errorMessage);
+        this.errorMessage = errorMessage;
+      }
+    });
   }
-
 }
+
+

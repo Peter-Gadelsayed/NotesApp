@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/authantications/auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,10 @@ import { AuthInterceptor } from './core/authantications/auth.interceptor';
     AppRoutingModule,
     RouterModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, positionClass: 'toast-top-right', preventDuplicates: true,
+    }),
   ],
   providers: [
     {
