@@ -47,10 +47,10 @@ export class LogInComponent implements OnInit {
           this.router.navigate(['/notes']);
         }, 5000);
       },
-      error: (error) => {
-        const errorMessage = error.error?.message || 'Login failed. Please try again.';
-        this.toastr.error(errorMessage);
+      error: (err) => {
+        const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
+        this.toastr.error('Error', errorMessage);
       }
     });
   }
