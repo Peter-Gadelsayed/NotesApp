@@ -1,1 +1,52 @@
-<p>sign-up works!</p>
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+
+    <!-- Left Section: Signup Form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center bg-light-brown">
+      <div class="w-75">
+        <h2 class="text-dark-brown fw-bold text-center">Create Your Account</h2>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" class="form-control" formControlName="name"
+              [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && f['name'].errors">
+              Name is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && f['email'].errors">
+              Valid email is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div class="invalid-feedback" *ngIf="submitted && f['password'].errors">
+              Password must be at least 6 characters.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-dark-brown w-100">Sign Up</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Section: Login Invitation -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center bg-dark-brown text-white">
+      <div class="text-center w-75">
+        <h3 class="fw-bold">Already have an account?</h3>
+        <p>Login and start managing your activities today!</p>
+        <a routerLink="/login" class="btn btn-light-brown">Sign In</a>
+      </div>
+    </div>
+
+  </div>
+</div>
