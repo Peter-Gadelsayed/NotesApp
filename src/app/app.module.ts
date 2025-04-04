@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/authantications/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
     ToastrModule.forRoot({
