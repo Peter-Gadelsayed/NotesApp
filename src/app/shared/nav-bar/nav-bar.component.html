@@ -2,12 +2,19 @@
   <div class="nav-logo">
     <a (click)="navigateToHome()"><img src="assets/images/Frame 3.png" alt="Noted Logo" class="logo"></a>
   </div>
-  <div class="nav-links">
+  
+  <button class="hamburger-menu" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="nav-links" [class.active]="isMenuOpen">
     <a (click)="navigateToHome()">All Notes</a>
     <a (click)="navigateToCreate()">Create Note</a>
     <a href="#about">About</a>
   </div>
-  <div class="nav-buttons">
+  <div class="nav-buttons" [class.active]="isMenuOpen">
     <button class="btn-signup" (click)="signupClicked()">Sign Up</button>
     <button class="btn-login" (click)="loginClicked()">Log In</button>
   </div>
