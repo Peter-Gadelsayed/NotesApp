@@ -8,8 +8,13 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  isMenuOpen = false;
 
   constructor(private router:Router, private authService: AuthService) {}
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   signupClicked() {
     this.router.navigate(['/signup']);
