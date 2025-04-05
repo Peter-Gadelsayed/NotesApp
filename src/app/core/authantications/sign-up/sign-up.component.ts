@@ -51,7 +51,7 @@ export class SignUpComponent {
         }, 2000); // Redirect after 2 seconds
       },
       error: (err) => {
-        const errorMessage = err.error?.message || 'Login failed. Please try again later.';
+        const errorMessage = err.error?.message || 'Sign up failed. Please try again later.';
         this.errorMessage = errorMessage;
         this.toastr.error(errorMessage, 'Error', {
           timeOut: 5000, // Toast duration
