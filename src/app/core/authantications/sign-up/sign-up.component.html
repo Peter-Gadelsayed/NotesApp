@@ -48,7 +48,9 @@
               [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"></textarea>
             <div class="invalid-feedback" *ngIf="submitted && f['address'].errors">Address is required.</div>
           </div>
-
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
           <button type="submit" class="btn btn-dark-brown w-100">Sign Up</button>
         </form>
       </div>
