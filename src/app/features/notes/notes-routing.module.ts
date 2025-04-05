@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'create', component: CreateNotesComponent },
       { path: 'edit/:id', component: EditNotesComponent },
-      { path: 'show/:id', component: ShowNoteComponent },
+      { path: 'show', component: ShowNoteComponent },
       { path: '**', component: NotFoundComponent }
     ]
 
