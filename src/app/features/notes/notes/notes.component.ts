@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent {
-  notes!: Notes[];
+  notes: Notes[] = [];
 
   OpenBtnText: string = 'View';
   delBtnText: string = 'Delete';
