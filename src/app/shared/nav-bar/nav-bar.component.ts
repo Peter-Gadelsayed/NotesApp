@@ -38,7 +38,7 @@ export class NavBarComponent implements OnInit {
 
   navigateToHome() {
     if (this.authservice.isLogged()) {
-      this.router.navigate(['/notes/show']);
+      this.router.navigate(['/notes']);
     } else {
       this.router.navigate(['/login']);
     }

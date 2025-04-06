@@ -1,26 +1,3 @@
-<div class="container my-2 my-lg-3">
-    <div class="d-flex justify-content-between align-items-center ">
-      <h2 class="h2">All Notes</h2>
-      <a (click)="createNote()" class="btn btn-success animated-btn" title="New Note"><i class="fa fa-plus-square"
-          aria-hidden="true"></i> New</a>
-    </div>
-    <div class="row my-2 my-lg-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
-      <div class="col" *ngFor="let note of notes">
-        <div class="card text-center h-100">
-          <h5 class="card-header">{{note.priority}}</h5>
-          <div class="card-body">
-            <h5 class="card-title"><strong>Title: </strong>{{note.title}}</h5>
-            <p class="card-text truncate-multiline"><strong>Content: </strong>{{note.content}}</p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item border-top text-truncate"><strong>Category: </strong>{{note.category}}</li>
-            </ul>
-            <a (click)="openNote(note)" class="btn m-2 btn-primary animated-btn"> {{OpenBtnText}}</a>
-  
-          </div>
-          <div class="card-footer text-body-secondary text-truncate">{{note.tags}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   
