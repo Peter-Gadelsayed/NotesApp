@@ -6,6 +6,7 @@ import { NotesComponent } from './notes/notes.component';
 import { EditNotesComponent } from './edit-notes/edit-notes.component';
 import { ShowNoteComponent } from './show-note/show-note.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     NotesRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class NotesModule { }

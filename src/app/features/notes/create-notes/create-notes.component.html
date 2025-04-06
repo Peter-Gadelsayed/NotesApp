@@ -1,1 +1,30 @@
-<p>create-notes works!</p>
+<div class="container">
+    <div *ngIf="success" class="alert alert-success" role="alert">
+        Your Notes Has Been Created Successfuly!
+    </div>
+    <div class="form-holder">
+        <form  [formGroup] = 'noteForm' (ngSubmit)="submitForm()">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text"  formControlName="title" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Priority</label>
+                <input type="text" class="form-control" formControlName = 'priority'>
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Tags</label>
+                <input type="text" class="form-control" formControlName = 'tags'>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Content</label>
+                  <input type="text" class="form-control" formControlName = 'content'>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Category</label>
+                  <input type="text" class="form-control" formControlName = 'category'>
+              </div>
+              <button class="w-100 btn btn-primary">Submit</button>
+          </form>
+    </div>
+</div>

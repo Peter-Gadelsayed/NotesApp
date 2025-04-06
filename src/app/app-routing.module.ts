@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent, canActivate: [loginPreventGuard] },
   {
     path: 'notes', loadChildren: () =>
-      import('./features/notes/notes.module').then((m) => m.NotesModule), canActivate: [authGuard]
+      import('./features/notes/notes.module').then((m) => m.NotesModule), 
   },
   { path: '**', component: NotFoundComponent }
 ];

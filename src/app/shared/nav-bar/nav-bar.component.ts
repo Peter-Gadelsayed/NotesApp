@@ -46,7 +46,7 @@ export class NavBarComponent implements OnInit {
 
   navigateToCreate() {
     if (this.authservice.isLogged()) {
-      this.router.navigate(['/create-note']);
+      this.router.navigate(['notes/create']);
     } else {
       this.router.navigate(['/login']);
     }

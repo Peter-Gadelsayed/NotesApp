@@ -7,6 +7,7 @@ import { ShowNoteComponent } from './show-note/show-note.component';
 import { NotFoundComponent } from 'src/app/shared/not-found/not-found.component';
 
 const routes: Routes = [
+
   { path: '', component: NotesComponent },
   { path: 'create', component: CreateNotesComponent },
   { path: 'edit/:id', component: EditNotesComponent },
