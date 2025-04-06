@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     CoreModule,
     SharedModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'timer' }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
@@ -33,6 +33,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       multi: true
     }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
