@@ -16,8 +16,8 @@
   </div>
   <div class="nav-buttons" [ngStyle]="isLogged ? { 'display': 'none' } : { 'display': 'flex' }"
     [class.active]="isMenuOpen">
-    <button class="btn-signup" (click)="signupClicked()">Sign Up</button>
     <button class="btn-login" (click)="loginClicked()">Log In</button>
+    <button class="btn-signup" (click)="signupClicked()">Sign Up</button>
   </div>
   <div class="nav-buttons" [ngStyle]="isLogged ? { 'display': 'flex' } : { 'display': 'none' }"
     [class.active]="isMenuOpen">
