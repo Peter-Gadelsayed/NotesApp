@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 
 @Component({
   selector: 'app-log-in',
@@ -15,7 +16,8 @@ export class LogInComponent implements OnInit {
     private fb: FormBuilder,
     private authservice: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinnerService: SpinnerService
   ) { }
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -39,6 +41,8 @@ export class LogInComponent implements OnInit {
       return;
     }
 
+    this.spinnerService.show();
+
     this.authservice.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.toastr.success('Login successful!', 'Success', {
@@ -52,11 +56,13 @@ export class LogInComponent implements OnInit {
         this.authservice.isLogged = () => true;
         setTimeout(() => {
           window.location.replace('/notes');
+          this.spinnerService.hide();
         }, 2000); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
+        this.spinnerService.hide();
         this.toastr.error(errorMessage, 'Error', {
           timeOut: 5000, // Toast duration
           progressBar: true, // Show progress bar

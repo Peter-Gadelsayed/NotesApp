@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,7 @@ export class SignUpComponent {
   submitted = false;
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private authservice: AuthService, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private authservice: AuthService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -35,6 +36,8 @@ export class SignUpComponent {
       return;
     }
 
+    this.spinner.show(); // Show spinner
+
     this.authservice.signup(this.signupForm.value).subscribe({
       next: (response) => {
         this.toastr.success('Login successful!', 'Success', {
@@ -48,11 +51,13 @@ export class SignUpComponent {
         this.authservice.isLogged = () => true;
         setTimeout(() => {
           window.location.replace('/notes');
+          this.spinner.hide(); // Hide spinner after redirection
         }, 2000); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Sign up failed. Please try again later.';
         this.errorMessage = errorMessage;
+        this.spinner.hide(); // Hide spinner on error
         this.toastr.error(errorMessage, 'Error', {
           timeOut: 5000, // Toast duration
           progressBar: true, // Show progress bar
