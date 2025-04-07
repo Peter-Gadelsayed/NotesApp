@@ -10,14 +10,20 @@ import { ApiService } from '../api.service';
 })
 export class CreateNotesComponent implements OnInit {
   success:boolean = false;
+  failed: boolean = false;
   noteForm: any;
-  
+  formError: any;
+
   submitForm() {
-    console.log(this.noteForm.value);
+    console.log(this.noteForm);
     this.postAPI(this.noteForm.value);
+    this.noteForm.reset();
   }
   
-  
+  get f() {
+    return this.noteForm.controls;
+  }
+
   constructor(private fb:FormBuilder, private API:ApiService) {}
   ngOnInit(): void {
     this.initForm();
@@ -25,7 +31,7 @@ export class CreateNotesComponent implements OnInit {
 
   initForm() {
     this.noteForm = this.fb.group({
-      title: ['', [Validators.required]] ,
+      title: ['', [Validators.required]],
       priority: ['', [Validators.required]],
       tags: ['', [Validators.required]],
       content: ['', [Validators.required]],
@@ -38,7 +44,15 @@ export class CreateNotesComponent implements OnInit {
       console.log(res);
       this.success = true;
     }, err => {
-      console.log(err);
+      console.log(err.message);
+      this.failed = true;
+      if (err.status === 400) {
+        this.formError = "Invalid Input. please try again and fill all the data required."
+      } else if (err.status === 401) {
+        this.formError = "Unauthorized. please sign in again."
+      } else {
+        this.formError = err.message;
+      }
     });
   }
 
