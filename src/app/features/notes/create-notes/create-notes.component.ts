@@ -51,7 +51,7 @@ export class CreateNotesComponent implements OnInit {
       } else if (err.status === 401) {
         this.formError = "Unauthorized. please sign in again."
       } else {
-        this.formError = err.message;
+        this.formError = "Oops. Couldn't connect to the server or something else happened. Please Check your connection or try again later."
       }
     });
   }
