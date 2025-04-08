@@ -46,7 +46,7 @@ export class LogInComponent implements OnInit {
     this.authservice.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.toastr.success('Login successful!', 'Success', {
-          timeOut: 5000, // Toast duration
+          timeOut: 2500, // Toast duration
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss
@@ -57,14 +57,14 @@ export class LogInComponent implements OnInit {
         setTimeout(() => {
           window.location.replace('/notes');
           this.spinnerService.hide();
-        }, 2000); // Redirect after 2 seconds
+        }, 1500); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
         this.spinnerService.hide();
         this.toastr.error(errorMessage, 'Error', {
-          timeOut: 5000, // Toast duration
+          timeOut: 2500, // Toast duration
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss

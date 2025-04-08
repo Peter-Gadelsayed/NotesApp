@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/authantications/auth.service';
+import { AlertService } from '../alert/alert.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,7 +13,7 @@ export class NavBarComponent implements OnInit {
   isMenuOpen = false;
   isLogged = false;
 
-  constructor(private router: Router, private authservice: AuthService) { }
+  constructor(private router: Router, private authservice: AuthService, private alert: AlertService) { }
 
   ngOnInit(): void {
     this.isLogged = this.authservice.isLogged()
@@ -31,9 +32,12 @@ export class NavBarComponent implements OnInit {
   }
 
   logoutClicked() {
-    this.authservice.logout();
-    this.router.navigate(['/login']);
-    this.isLogged = false;
+    this.alert.confirm("Log out", "Are you sure you want to logout?", "Yes, Logout", () => {
+      this.authservice.logout();
+      this.alert.success("Logged out", "Logged out successfully");
+      this.router.navigate(['/login']);
+      this.isLogged = false;
+    });
   }
 
   navigateToHome() {

@@ -41,7 +41,7 @@ export class SignUpComponent {
     this.authservice.signup(this.signupForm.value).subscribe({
       next: (response) => {
         this.toastr.success('Login successful!', 'Success', {
-          timeOut: 5000, // Toast duration
+          timeOut: 2500, // Toast duration
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss
@@ -52,14 +52,14 @@ export class SignUpComponent {
         setTimeout(() => {
           window.location.replace('/notes');
           this.spinner.hide(); // Hide spinner after redirection
-        }, 2000); // Redirect after 2 seconds
+        }, 1500); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Sign up failed. Please try again later.';
         this.errorMessage = errorMessage;
         this.spinner.hide(); // Hide spinner on error
         this.toastr.error(errorMessage, 'Error', {
-          timeOut: 5000, // Toast duration
+          timeOut: 2500, // Toast duration
           progressBar: true, // Show progress bar
           closeButton: true, // Show close button
           tapToDismiss: false, // Click does not dismiss
