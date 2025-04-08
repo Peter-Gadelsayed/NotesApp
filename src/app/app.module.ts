@@ -10,6 +10,7 @@ import { AuthInterceptor } from './core/authantications/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { httpInterceptorProviders } from './core/authantications';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ToastrModule.forRoot(),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    httpInterceptorProviders,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
