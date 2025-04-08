@@ -57,7 +57,7 @@ export class LogInComponent implements OnInit {
         setTimeout(() => {
           window.location.replace('/notes');
           this.spinnerService.hide();
-        }, 1500); // Redirect after 2 seconds
+        }, 3000); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';

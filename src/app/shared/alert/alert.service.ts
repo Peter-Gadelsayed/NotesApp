@@ -13,26 +13,19 @@ export class AlertService {
       title: title,
       text: message,
       icon: "success",
-      color: "#716add",
-      showClass: {
-        popup: `
-        animate__animated
-        animate__fadeInUp
-        animate__slower
-        `
-      },
-      hideClass: {
-        popup: `
-        animate__animated
-        animate__fadeOutDown
-        animate__slower
-        `
-      },
+      timer: 5000,
+      timerProgressBar: true,
+      showCloseButton: true,
     });
   }
 
-  error(message: string) {
-    Swal.fire('خطأ', message, 'error');
+  error(title: string, message: string) {
+    Swal.fire({
+      title: title || "Oops...",
+      text: message || "Something went wrong!",
+      icon: "error",
+      showCloseButton: true,
+    });
   }
 
   confirm(title: string, message: string, confirmTxt: string, onConfirm: () => void) {
@@ -40,20 +33,6 @@ export class AlertService {
       title: title,
       text: message,
       icon: 'warning',
-      showClass: {
-        popup: `
-        animate__animated
-        animate__fadeInUp
-        animate__faster
-        `
-      },
-      hideClass: {
-        popup: `
-        animate__animated
-        animate__fadeOutDown
-        animate__faster
-        `
-      },
       showCloseButton: true,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -63,7 +42,6 @@ export class AlertService {
     }).then((result) => {
       if (result.isConfirmed) {
         onConfirm();
-
       }
     });
   }

@@ -52,7 +52,7 @@ export class SignUpComponent {
         setTimeout(() => {
           window.location.replace('/notes');
           this.spinner.hide(); // Hide spinner after redirection
-        }, 1500); // Redirect after 2 seconds
+        }, 3000); // Redirect after 2 seconds
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Sign up failed. Please try again later.';
