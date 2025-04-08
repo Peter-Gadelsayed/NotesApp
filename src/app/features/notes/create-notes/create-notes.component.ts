@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '../api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-notes',
@@ -9,8 +10,6 @@ import { ApiService } from '../api.service';
   styleUrls: ['./create-notes.component.scss']
 })
 export class CreateNotesComponent implements OnInit {
-  success:boolean = false;
-  failed: boolean = false;
   noteForm: any;
   formError: any;
 
@@ -24,7 +23,7 @@ export class CreateNotesComponent implements OnInit {
     return this.noteForm.controls;
   }
 
-  constructor(private fb:FormBuilder, private API:ApiService) {}
+  constructor(private fb:FormBuilder, private API:ApiService, private toastr:ToastrService) {}
   ngOnInit(): void {
     this.initForm();
   }
@@ -41,17 +40,16 @@ export class CreateNotesComponent implements OnInit {
 
   postAPI(data:any) {
     this.API.postData(data).subscribe(res => {
+      this.toastr.success("Note Created Successfully");
       console.log(res);
-      this.success = true;
     }, err => {
       console.log(err.message);
-      this.failed = true;
       if (err.status === 400) {
-        this.formError = "Invalid Input. please try again and fill all the data required."
+        this.toastr.error("Invalid Input. please try again and fill all the data required.");
       } else if (err.status === 401) {
-        this.formError = "Unauthorized. please sign in again."
+        this.toastr.error("Unauthorized. please sign in again.");
       } else {
-        this.formError = "Oops. Couldn't connect to the server or something else happened. Please Check your connection or try again later."
+        this.toastr.error("Oops. Couldn't connect to the server or something else happened. Please Check your connection or try again later.");
       }
     });
   }

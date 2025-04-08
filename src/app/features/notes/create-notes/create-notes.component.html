@@ -1,10 +1,4 @@
 <div class="container">
-    <div *ngIf="failed" class="alert alert-danger" role="alert">
-        <b>{{formError}}</b>
-    </div>
-    <div *ngIf="success" class="alert alert-success" role="alert">
-        Your Note Has Been Created Successfully!
-    </div>
     <div class="form-holder">
         <form  [formGroup] = 'noteForm' (ngSubmit)="submitForm()">
             <div class="mb-3">
