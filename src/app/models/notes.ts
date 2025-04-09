@@ -5,5 +5,7 @@ export interface Notes {
   content: string,
   category: string,
   priority: string,
-  tags: string
+  tags: string,
+  createdAt: Date,
+  updatedAt?: Date
 }
