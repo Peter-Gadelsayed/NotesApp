@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
- constructor(private router:Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
- navigateToCreate() {
-  if (this.authService.isLogged()) {
-    this.router.navigate(['/create-note']);
-  } else {
-    this.router.navigate(['/login']);
+  navigateToCreate() {
+    if (this.authService.isLogged()) {
+      this.router.navigate(['/create-note']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
-}
 }
 

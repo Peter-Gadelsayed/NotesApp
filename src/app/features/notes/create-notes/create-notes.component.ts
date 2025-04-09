@@ -18,12 +18,12 @@ export class CreateNotesComponent implements OnInit {
     this.postAPI(this.noteForm.value);
     this.noteForm.reset();
   }
-  
+
   get f() {
     return this.noteForm.controls;
   }
 
-  constructor(private fb:FormBuilder, private API:ApiService, private toastr:ToastrService) {}
+  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.initForm();
   }
@@ -38,11 +38,11 @@ export class CreateNotesComponent implements OnInit {
     })
   }
 
-  postAPI(data:any) {
+  postAPI(data: any) {
     this.API.postData(data).subscribe(res => {
       this.toastr.success("Note Created Successfully");
     }, err => {
-      
+
       for (let error of Object.values(err.error.errors)) {
         this.toastr.error(`${error}`);
       }

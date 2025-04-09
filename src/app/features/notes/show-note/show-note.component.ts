@@ -21,7 +21,7 @@ export class ShowNoteComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadNotesAndMaybeSelectNote();
