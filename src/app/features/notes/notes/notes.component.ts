@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Notes } from 'src/app/models/notes';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import Swal, { SweetAlertArrayOptions } from 'sweetalert2';
 
 @Component({
   selector: 'app-notes',
@@ -36,6 +37,23 @@ export class NotesComponent {
   }
 
   delNote(note:any) {
+    Swal.fire({
+      title: 'Delete ?',
+      text: "Are you sure you want to delete this note ?",
+      icon: "error",
+      showDenyButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: '#e43949',
+      denyButtonText: `Keep`,
+      denyButtonColor: '#198754',
+    }).then((res)=> {
+      if (res.isConfirmed) {
+        this.delNoteFunction(note);
+      }
+    })
+  }
+
+  delNoteFunction(note:any) {
     // Delete the Note by its ID
     this.apiService.deleteData(note.id).subscribe(res=> {
       console.log(res);
@@ -48,8 +66,5 @@ export class NotesComponent {
     }, err=> {
       console.log(err);
     });
-  } 
-
-
-
+  }
 }
