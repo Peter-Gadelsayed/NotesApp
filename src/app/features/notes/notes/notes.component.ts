@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Notes } from 'src/app/models/notes';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { AlertService } from 'src/app/shared/alert/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notes',
@@ -14,18 +15,18 @@ export class NotesComponent {
 
   OpenBtnText: string = 'View';
   delBtnText: string = 'Delete';
-  editeBtnText: string = 'Edit';
+  editBtnText: string = 'Edit';
+  duplicateBtnText: string = 'Duplicate';
 
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private alert: AlertService, private toaster: ToastrService) { }
 
   ngOnInit() {
-    this.apiService.getData().subscribe((notes) => {
+    this.apiService.getNotes().subscribe((notes) => {
       console.log('Fetched notes:', notes);
       this.notes = notes;
     }, (error) => console.error('Error:', error)
     );
-
   }
 
   openNote(note: Notes) {
@@ -37,32 +38,37 @@ export class NotesComponent {
   }
 
   delNote(note: Notes) {
-    Swal.fire({
-      title: 'Delete ?',
-      text: "Are you sure you want to delete this note ?",
-      icon: "error",
-      showDenyButton: true,
-      confirmButtonText: "Delete",
-      confirmButtonColor: '#e43949',
-      denyButtonText: `Keep`,
-      denyButtonColor: '#198754',
-    }).then((res) => {
-      if (res.isConfirmed) {
-        this.delNoteFunction(note);
-      }
-    })
+    this.alert.confirm('Delete Note ?', `Are you sure you want to delete this note "${note.title}" ?`, 'Delete', 'Keep', () => {
+      this.delNoteFunction(note);
+    });
+  }
+
+  editNote(note: Notes) {
+    this.router.navigate(['/notes/edit/', note.id])
   }
 
   delNoteFunction(note: Notes) {
     // Delete the Note by its ID
-    this.apiService.deleteData(note.id).subscribe(res => {
-      console.log(res);
-
+    this.apiService.deleteNote(note.id).subscribe(res => {
+      this.toaster.success("Note Deleted Successfully", res.message || "Deleted", {
+        timeOut: 2500,
+        progressBar: true,
+      });
       // Update the list after deletion
-      this.apiService.getData().subscribe(notes => {
+      this.apiService.getNotes().subscribe(notes => {
         this.notes = notes;
       });
 
+    }, err => {
+      console.log(err);
+    });
+  }
+  duplicateNote(note: Notes) {
+    // Create a new note with the same content as the original note
+    const newNote: Notes = { ...note, id: 0 }; // Assuming ID is auto-generated
+    this.apiService.postNote(newNote).subscribe(res => {
+      console.log('Duplicated Note:', res);
+      this.notes.push(res); // Add the duplicated note to the list
     }, err => {
       console.log(err);
     });

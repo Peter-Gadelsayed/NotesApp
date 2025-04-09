@@ -16,15 +16,12 @@ export class ApiService {
   }
 
   constructor(private http: HttpClient) { }
-  getData(): Observable<any> {
+  getNotes(): Observable<any> {
     return this.http.get<any>(this.apiUrl());
   }
 
-  postData(note: Notes): Observable<any> {
+  postNote(note: Notes): Observable<any> {
     return this.http.post<any>(this.apiUrl(), note);
-  }
-  deleteData(id: number) {
-    return this.http.delete<any>(`${this.apiUrl()}/${id}`);
   }
 
   deleteNote(id: number): Observable<any> {

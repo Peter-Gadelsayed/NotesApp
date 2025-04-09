@@ -39,7 +39,8 @@ export class CreateNotesComponent implements OnInit {
   }
 
   postAPI(data: any) {
-    this.API.postData(data).subscribe(res => {
+    this.API.postNote(data).subscribe(res => {
+      console.log(res);
       this.toastr.success("Note Created Successfully");
     }, err => {
 

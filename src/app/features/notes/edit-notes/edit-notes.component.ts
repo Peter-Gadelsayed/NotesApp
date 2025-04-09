@@ -23,9 +23,9 @@ export class EditNotesComponent implements OnInit {
     this.editForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      category: [''],
-      priority: [''],
-      tags: ['']
+      category: ['', Validators.required],
+      priority: ['', Validators.required],
+      tags: ['', Validators.required]
     });
   }
 
@@ -41,8 +41,8 @@ export class EditNotesComponent implements OnInit {
 
   loadNote(id: number) {
     this.apiService.getNoteById(id).subscribe(
-      (response: any) => {
-        const noteData = response.data || response;
+      (response: Notes) => {
+        const noteData = response;
         this.note = noteData;
         this.editForm.patchValue({
           title: noteData.title,

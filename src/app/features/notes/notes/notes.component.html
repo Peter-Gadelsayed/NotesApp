@@ -18,6 +18,8 @@
           </ul>
           <a (click)="openNote(note)" class="btn m-2 btn-primary animated-btn"> {{OpenBtnText}}</a>
           <a (click)="delNote(note)" class="btn m-2 btn-danger animated-btn"> {{delBtnText}}</a>
+          <a (click)="editNote(note)" class="btn m-2 btn-warning animated-btn"> {{editBtnText}}</a>
+          <a (click)="duplicateNote(note)" class="btn m-2 btn-secondary animated-btn"> {{duplicateBtnText}}</a>
         </div>
         <div class="card-footer text-body-secondary text-truncate">{{note.tags}}</div>
       </div>

@@ -29,7 +29,7 @@ export class ShowNoteComponent implements OnInit {
 
   // ✅ تعديل هنا
   loadNotesAndMaybeSelectNote() {
-    this.apiService.getData().subscribe(
+    this.apiService.getNotes().subscribe(
       (notes) => {
         this.notes = notes;
 

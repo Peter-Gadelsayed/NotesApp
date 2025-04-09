@@ -28,22 +28,24 @@ export class AlertService {
     });
   }
 
-  confirm(title: string, message: string, confirmTxt: string, onConfirm: () => void) {
+  confirm(title: string, message: string, confirmTxt: string, cancelTxt: string, onConfirm: () => void) {
     Swal.fire({
       title: title,
       text: message,
       icon: 'warning',
       showCloseButton: true,
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#e43949",
+      cancelButtonColor: "#198754",
       confirmButtonText: confirmTxt,
-      cancelButtonText: "No, cancel!",
+      cancelButtonText: cancelTxt,
     }).then((result) => {
       if (result.isConfirmed) {
         onConfirm();
       }
     });
   }
+
+
 
 }

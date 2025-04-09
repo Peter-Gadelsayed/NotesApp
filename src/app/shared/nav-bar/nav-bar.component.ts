@@ -32,7 +32,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logoutClicked() {
-    this.alert.confirm("Log out", "Are you sure you want to logout?", "Yes, Logout", () => {
+    this.alert.confirm("Log out !", "Are you sure you want to logout?", "Logout", "Cancel", () => {
       this.authservice.logout();
       this.alert.success("Logged out", "Logged out successfully");
       this.router.navigate(['/login']);
