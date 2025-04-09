@@ -1,3 +1,60 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Notes List</h5>
+          <button class="btn btn-primary" (click)="createNote()">Create New Note</button>
+        </div>
+        <div class="card-body">
+          <div class="list-group">
+            <a *ngFor="let note of notes"
+               class="list-group-item list-group-item-action"
+               [class.active]="selectedNote?.id === note.id"
+               (click)="openNote(note)">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="mb-1">{{note.title}}</h6>
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-primary" (click)="editNote(note); $event.stopPropagation()">
+                    {{editBtnText}}
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteNote(note); $event.stopPropagation()">
+                    {{delBtnText}}
+                  </button>
+                </div>
+              </div>
+              <small class="text-muted">{{note.createdAt | date:'medium'}}</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-md-8">
+      <div class="card" *ngIf="selectedNote">
+        <div class="card-header">
+          <h5 class="mb-0">{{selectedNote.title}}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{selectedNote.content}}</p>
+          <div class="text-muted">
+            <small>Created: {{selectedNote.createdAt | date:'medium'}}</small>
+            <small *ngIf="selectedNote.updatedAt" class="ms-3">
+              Updated: {{selectedNote.updatedAt | date:'medium'}}
+            </small>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" (click)="editNote(selectedNote)">Edit Note</button>
+        </div>
+      </div>
 
-  
+      <div class="card" *ngIf="!selectedNote && noteId">
+        <div class="card-body">
+          <p class="text-center">Note not found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
