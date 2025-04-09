@@ -23,8 +23,11 @@ export class ApiService {
   postData(note: Notes): Observable<any> {
     return this.http.post<any>(this.apiUrl(), note);
   }
+  deleteData(id: number) {
+    return this.http.delete<any>(`${this.apiUrl()}/${id}`);
+  }
 
-  deleteData(id: number): Observable<any> {
+  deleteNote(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl()}/${id}`);
   }
 
@@ -32,4 +35,7 @@ export class ApiService {
     return this.http.get<any>(`${this.apiUrl()}/${id}`);
   }
 
+  updateNote(id: number, note: Notes): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl()}/${id}`, note);
+  }
 }
