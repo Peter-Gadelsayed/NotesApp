@@ -41,15 +41,14 @@ export class CreateNotesComponent implements OnInit {
   postAPI(data:any) {
     this.API.postData(data).subscribe(res => {
       this.toastr.success("Note Created Successfully");
-      console.log(res);
     }, err => {
-      console.log(err.message);
-      if (err.status === 400) {
-        this.toastr.error("Invalid Input. please try again and fill all the data required.");
-      } else if (err.status === 401) {
+      
+      for (let error of Object.values(err.error.errors)) {
+        this.toastr.error(`${error}`);
+      }
+
+      if (err.status === 401) {
         this.toastr.error("Unauthorized. please sign in again.");
-      } else {
-        this.toastr.error("Oops. Couldn't connect to the server or something else happened. Please Check your connection or try again later.");
       }
     });
   }
