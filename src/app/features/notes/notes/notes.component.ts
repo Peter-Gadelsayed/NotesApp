@@ -23,7 +23,6 @@ export class NotesComponent {
 
   ngOnInit() {
     this.apiService.getNotes().subscribe((notes) => {
-      console.log('Fetched notes:', notes);
       this.notes = notes;
     }, (error) => console.error('Error:', error)
     );

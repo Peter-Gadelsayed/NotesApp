@@ -13,10 +13,10 @@
               <div class="d-flex justify-content-between align-items-center">
                 <h6 class="mb-1">{{note.title}}</h6>
                 <div class="btn-group">
-                  <button class="btn btn-sm btn-outline-primary" (click)="editNote(note); $event.stopPropagation()">
+                  <button class="btn btn-sm btn-outline-primary" (click)="editNote(note)">
                     {{editBtnText}}
                   </button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="deleteNote(note); $event.stopPropagation()">
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteNote(note)">
                     {{delBtnText}}
                   </button>
                 </div>
