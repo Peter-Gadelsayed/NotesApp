@@ -27,22 +27,32 @@
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
               <input type="text" class="form-control" id="category" formControlName="category">
+              <div class="invalid-feedback"
+                *ngIf="editForm.get('category')?.invalid && editForm.get('category')?.touched">
+                Category is required
+              </div>
             </div>
 
             <div class="mb-3">
               <label for="priority" class="form-label">Priority</label>
               <select class="form-select" id="priority" formControlName="priority">
-                <option value="">Select Priority</option>
+                <option disabled value="">Select Priority</option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </select>
+              <div class="invalid-feedback" *ngIf="editForm.get('priority')?.invalid && editForm.get('title')?.touched">
+                priority is required
+              </div>
             </div>
 
             <div class="mb-3">
               <label for="tags" class="form-label">Tags</label>
               <input type="text" class="form-control" id="tags" formControlName="tags">
               <small class="text-muted my-1">Separate tags with commas</small>
+              <div class="invalid-feedback" *ngIf="editForm.get('tags')?.invalid && editForm.get('tags')?.touched">
+                Tags is required
+              </div>
             </div>
 
             <div class="d-flex justify-content-between">

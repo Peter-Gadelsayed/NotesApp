@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Notes List</h5>
-          <button class="btn btn-primary" (click)="createNote()">Create New Note</button>
+          <button class="btn btn-success" (click)="createNote()">New</button>
         </div>
         <div class="card-body">
           <div class="list-group">
@@ -30,20 +30,19 @@
 
     <div class="col-md-8">
       <div class="card" *ngIf="selectedNote">
-        <div class="card-header">
-          <h5 class="mb-0">{{selectedNote.title}}</h5>
-        </div>
         <div class="card-body">
-          <p class="card-text">{{selectedNote.content}}</p>
-          <div class="text-muted">
-            <small>Created: {{selectedNote.createdAt | date:'medium'}}</small>
-            <small *ngIf="selectedNote.updatedAt" class="ms-3">
-              Updated: {{selectedNote.updatedAt | date:'medium'}}
-            </small>
+          <div class="text-container">
+            <p class="notes-head">Tittle:</p>
+            <p class="notes-text">{{selectedNote.title}}</p>
+            <p class="notes-head">Content:</p>
+            <p class="notes-text">{{selectedNote.content}}</p>
+            <p class="notes-head">Priority:</p>
+            <p class="notes-text">{{selectedNote.priority}}</p>
+            <p class="notes-head">Category:</p>
+            <p class="notes-text">{{selectedNote.category}}</p>
+            <p class="notes-head">Tags:</p>
+            <p class="notes-text">{{selectedNote.tags}}</p>
           </div>
-        </div>
-        <div class="card-footer">
-          <button class="btn btn-primary" (click)="editNote(selectedNote)">Edit Note</button>
         </div>
       </div>
 

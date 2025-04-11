@@ -6,11 +6,11 @@
           <h4 class="mb-0">Create Note</h4>
         </div>
         <div class="card-body">
-          <form [formGroup]="noteForm" (ngSubmit)="submitForm()">
+          <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input type="text" class="form-control" id="title" formControlName="title" required>
-              <div class="invalid-feedback" *ngIf="noteForm.get('title').invalid && noteForm.get('title')?.touched">
+              <div class="invalid-feedback" *ngIf="submitted && f['title'].errors">
                 Title is required
               </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
               <textarea class="form-control" id="content" formControlName="content" rows="5" required></textarea>
-              <div class="invalid-feedback" *ngIf="noteForm.get('content').invalid && noteForm.get('content')?.touched">
+              <div class="invalid-feedback" *ngIf="submitted && f['content'].errors">
                 Content is required
               </div>
             </div>
@@ -26,6 +26,9 @@
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
               <input type="text" class="form-control" id="category" formControlName="category">
+              <div class="invalid-feedback" *ngIf="submitted && f['category'].errors">
+                Category is required
+              </div>
             </div>
 
             <div class="mb-3">
@@ -36,12 +39,18 @@
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </select>
+              <div class="invalid-feedback" *ngIf="submitted && f['priority'].errors">
+                Priority is required
+              </div>
             </div>
 
             <div class="mb-3">
               <label for="tags" class="form-label">Tags</label>
               <input type="text" class="form-control" id="tags" formControlName="tags">
               <small class="text-muted my-1">Separate tags with commas</small>
+              <div class="invalid-feedback" *ngIf="submitted && f['tags'].errors">
+                Tags is required
+              </div>
             </div>
             <!-- [disabled]="noteForm.invalid" -->
             <div class="d-flex justify-content-between">

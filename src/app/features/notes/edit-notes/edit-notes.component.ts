@@ -10,7 +10,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./edit-notes.component.scss']
 })
 export class EditNotesComponent implements OnInit {
-  editForm: FormGroup;
+  editForm!: FormGroup;
   noteId!: number;
   note!: Notes;
 
@@ -20,22 +20,27 @@ export class EditNotesComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.editForm = this.fb.group({
-      title: ['', Validators.required],
-      content: ['', Validators.required],
-      category: ['', Validators.required],
-      priority: ['', Validators.required],
-      tags: ['', Validators.required]
-    });
+
   }
 
   ngOnInit() {
+    this.initForm()
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
         this.noteId = Number(id);
         this.loadNote(this.noteId);
       }
+    });
+  }
+
+  initForm() {
+    this.editForm = this.fb.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      category: ['', Validators.required],
+      priority: ['', Validators.required],
+      tags: ['', Validators.required]
     });
   }
 
