@@ -21,11 +21,11 @@ export class CreateNotesComponent implements OnInit {
 
   initForm() {
     this.noteForm = this.fb.group({
-      title: ['', [Validators.required]],
-      priority: ['', [Validators.required]],
-      tags: ['', [Validators.required]],
-      content: ['', [Validators.required]],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      content: ['', [Validators.required, Validators.minLength(10)]],
       category: ['', [Validators.required]],
+      priority: ['', [Validators.required]],
+      tags: ['', [Validators.required]]
     });
   }
 
@@ -56,5 +56,6 @@ export class CreateNotesComponent implements OnInit {
 
   clear() {
     this.noteForm.reset();
+    this.submitted = false;
   }
 }
