@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { ApiService } from '../api.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-create-notes',
@@ -14,16 +13,16 @@ export class CreateNotesComponent implements OnInit {
   formError: any;
 
   submitForm() {
-    console.log(this.noteForm);
     this.postAPI(this.noteForm.value);
-    this.noteForm.reset();
+    this.clear();
   }
 
   get f() {
     return this.noteForm.controls;
   }
 
-  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToasterService) { }
+
   ngOnInit(): void {
     this.initForm();
   }
@@ -40,18 +39,22 @@ export class CreateNotesComponent implements OnInit {
 
   postAPI(data: any) {
     this.API.postNote(data).subscribe(res => {
-      console.log(res);
-      this.toastr.success("Note Created Successfully");
+      console.log(res.value);
+      this.toastr.SuccessToaster("Note Created Successfully");
     }, err => {
 
-      for (let error of Object.values(err.error.errors)) {
-        this.toastr.error(`${error}`);
-      }
+      this.toastr.ErrorToaster("Note Creation Failed");
 
-      if (err.status === 401) {
-        this.toastr.error("Unauthorized. please sign in again.");
+      for (let error of Object.values(err.error.errors)) {
+        this.toastr.ErrorToaster(`${error}`);
       }
     });
   }
+
+  clear() {
+
+    this.noteForm.reset();
+  }
+
 
 }

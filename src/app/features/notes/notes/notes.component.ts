@@ -3,7 +3,7 @@ import { Notes } from 'src/app/models/notes';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert/alert.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-notes',
@@ -19,7 +19,7 @@ export class NotesComponent {
   duplicateBtnText: string = 'Duplicate';
 
 
-  constructor(private apiService: ApiService, private router: Router, private alert: AlertService, private toaster: ToastrService) { }
+  constructor(private apiService: ApiService, private router: Router, private alert: AlertService, private toaster: ToasterService) { }
 
   ngOnInit() {
     this.apiService.getNotes().subscribe((notes) => {
@@ -50,27 +50,25 @@ export class NotesComponent {
   delNoteFunction(note: Notes) {
     // Delete the Note by its ID
     this.apiService.deleteNote(note.id).subscribe(res => {
-      this.toaster.success("Note Deleted Successfully", res.message || "Deleted", {
-        timeOut: 2500,
-        progressBar: true,
-      });
+      this.toaster.SuccessToaster("Note Deleted Successfully", res.message || "Deleted",);
       // Update the list after deletion
       this.apiService.getNotes().subscribe(notes => {
         this.notes = notes;
       });
 
     }, err => {
-      console.log(err);
+      this.toaster.ErrorToaster("Error Deleting Note", err.message || "Error",);
     });
   }
+
   duplicateNote(note: Notes) {
     // Create a new note with the same content as the original note
     const newNote: Notes = { ...note, id: 0 }; // Assuming ID is auto-generated
     this.apiService.postNote(newNote).subscribe(res => {
-      console.log('Duplicated Note:', res);
       this.notes.push(res); // Add the duplicated note to the list
+      this.toaster.SuccessToaster("Note Duplicated Successfully", res.message || "Duplicated",);
     }, err => {
-      console.log(err);
+      this.toaster.ErrorToaster("Error Duplicating Note", err.message || "Error",);
     });
   }
 }

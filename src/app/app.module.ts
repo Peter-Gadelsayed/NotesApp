@@ -25,7 +25,10 @@ import { httpInterceptorProviders } from './core/authantications';
     SharedModule,
     NgxSpinnerModule.forRoot({ type: 'timer' }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      countDuplicates: true,
+    }),
   ],
   providers: [
     httpInterceptorProviders,

@@ -11,8 +11,8 @@ import { ApiService } from '../api.service';
 })
 export class EditNotesComponent implements OnInit {
   editForm: FormGroup;
-  noteId: number | null = null;
-  note: Notes | null = null;
+  noteId!: number;
+  note!: Notes;
 
   constructor(
     private fb: FormBuilder,
@@ -47,9 +47,9 @@ export class EditNotesComponent implements OnInit {
         this.editForm.patchValue({
           title: noteData.title,
           content: noteData.content,
-          category: noteData.category || '',
-          priority: noteData.priority || '',
-          tags: noteData.tags || ''
+          category: noteData.category,
+          priority: noteData.priority,
+          tags: noteData.tags
         });
       },
       (error: Error) => {

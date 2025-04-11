@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +14,7 @@ export class SignUpComponent {
   submitted = false;
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private authservice: AuthService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
+  constructor(private fb: FormBuilder, private authservice: AuthService, private toastr: ToasterService, private spinner: NgxSpinnerService) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -40,31 +40,19 @@ export class SignUpComponent {
 
     this.authservice.signup(this.signupForm.value).subscribe({
       next: (response) => {
-        this.toastr.success('Login successful!', 'Success', {
-          timeOut: 2500, // Toast duration
-          progressBar: true, // Show progress bar
-          closeButton: true, // Show close button
-          tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-top-right' // Custom position
-        });
+        this.toastr.SuccessToaster('Login successful!');
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
           window.location.replace('/notes');
-          this.spinner.hide(); // Hide spinner after redirection
-        }, 3000); // Redirect after 2 seconds
+          this.spinner.hide();
+        }, 3000);
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Sign up failed. Please try again later.';
         this.errorMessage = errorMessage;
         this.spinner.hide(); // Hide spinner on error
-        this.toastr.error(errorMessage, 'Error', {
-          timeOut: 2500, // Toast duration
-          progressBar: true, // Show progress bar
-          closeButton: true, // Show close button
-          tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-top-right' // Custom position
-        });
+        this.toastr.ErrorToaster(errorMessage);
       }
     });
 

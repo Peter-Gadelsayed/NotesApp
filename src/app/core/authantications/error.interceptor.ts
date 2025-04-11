@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService, private router: Router) { }
+  constructor(private toastr: ToasterService, private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else {
           switch (error.status) {
             case 400:
-              // errorMessage = 'Bad Request: Please check your input data';
+              errorMessage = 'Bad Request: Please check your input data';
               break;
             case 401:
               errorMessage = 'Unauthorized: Please login again';
@@ -43,7 +43,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
 
-        this.toastr.error(errorMessage);
+        this.toastr.ErrorToaster(errorMessage);
         return throwError(() => error);
       })
     );

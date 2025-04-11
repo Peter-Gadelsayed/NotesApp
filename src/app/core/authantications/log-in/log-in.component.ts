@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-log-in',
@@ -15,10 +14,10 @@ export class LogInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authservice: AuthService,
-    private router: Router,
-    private toastr: ToastrService,
+    private toastr: ToasterService,
     private spinnerService: SpinnerService
   ) { }
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -45,31 +44,19 @@ export class LogInComponent implements OnInit {
 
     this.authservice.login(this.loginForm.value).subscribe({
       next: (response) => {
-        this.toastr.success('Login successful!', 'Success', {
-          timeOut: 2500, // Toast duration
-          progressBar: true, // Show progress bar
-          closeButton: true, // Show close button
-          tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-top-right' // Custom position
-        });
+        this.toastr.SuccessToaster('Login successful!');
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
           window.location.replace('/notes');
           this.spinnerService.hide();
-        }, 3000); // Redirect after 2 seconds
+        }, 3000);
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
         this.spinnerService.hide();
-        this.toastr.error(errorMessage, 'Error', {
-          timeOut: 2500, // Toast duration
-          progressBar: true, // Show progress bar
-          closeButton: true, // Show close button
-          tapToDismiss: false, // Click does not dismiss
-          positionClass: 'toast-top-right' // Custom position
-        });
+        this.toastr.ErrorToaster(errorMessage);
       }
     });
   }
