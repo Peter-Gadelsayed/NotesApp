@@ -27,7 +27,8 @@
 
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
-              <input type="text" class="form-control" id="category" formControlName="category">
+              <input type="text" class="form-control" id="category" formControlName="category"
+                [ngClass]="{ 'is-invalid': submitted && f['category'].errors }">
               <div class="invalid-feedback" *ngIf="submitted && f['category'].errors">
                 Category is required
               </div>
@@ -35,7 +36,8 @@
 
             <div class="mb-3">
               <label for="priority" class="form-label">Priority</label>
-              <select class="form-select" id="priority" formControlName="priority">
+              <select class="form-select" id="priority" formControlName="priority"
+                [ngClass]="{ 'is-invalid': submitted && f['priority'].errors }">
                 <option disabled selected value="">Select Priority</option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -48,7 +50,8 @@
 
             <div class="mb-3">
               <label for="tags" class="form-label">Tags</label>
-              <input type="text" class="form-control" id="tags" formControlName="tags">
+              <input type="text" class="form-control" id="tags" formControlName="tags"
+                [ngClass]="{ 'is-invalid': submitted && f['tags'].errors }">
               <small class="text-muted my-1">Separate tags with commas</small>
               <div class="invalid-feedback" *ngIf="submitted && f['tags'].errors">
                 Tags is required
