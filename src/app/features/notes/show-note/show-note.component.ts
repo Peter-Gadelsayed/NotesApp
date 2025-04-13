@@ -31,31 +31,23 @@ export class ShowNoteComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // Subscribe to route parameter changes
-    this.route.paramMap.pipe(
-      takeUntil(this.destroy$),
-      switchMap((params: ParamMap) => {
-        const id = params.get('id');
-        this.noteId = id ? Number(id) : undefined;
-        return this.apiService.getNotes();
-      }),
-      catchError(error => {
-        this.toastr.ErrorToaster('Error loading notes:', error);
-        return of([]);
-      })
-    ).subscribe(notes => {
-      this.notes = notes;
-      if (this.noteId) {
-        const foundNote = this.notes.find(n => n.id === this.noteId);
-        if (foundNote) {
-          this.selectedNote = foundNote;
-        } else {
-          this.loadNoteDetails(this.noteId);
-        }
-      } else {
-        this.selectedNote = undefined;
-      }
-    });
+    this.route.paramMap
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap((params: ParamMap) => {
+          const id = params.get('id');
+          this.noteId = id ? Number(id) : undefined;
+          return this.apiService.getNotes();
+        }),
+        catchError(error => {
+          this.toastr.ErrorToaster('Error loading notes:', error);
+          return of([]);
+        })
+      )
+      .subscribe(notes => {
+        this.notes = notes;
+        this.trySelectNote();
+      });
   }
 
   ngOnDestroy(): void {
@@ -63,39 +55,42 @@ export class ShowNoteComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  loadNotesAndMaybeSelectNote(): void {
-    const paramId = this.route.snapshot.paramMap.get('id');
-    this.noteId = paramId ? Number(paramId) : undefined;
+  private trySelectNote(): void {
+    if (this.noteId) {
+      const foundNote = this.notes.find(n => n.id === this.noteId);
+      if (foundNote) {
+        this.selectedNote = foundNote;
+      } else {
+        this.loadNoteDetails(this.noteId);
+      }
+    } else {
+      this.selectedNote = undefined;
+    }
+  }
 
+  private reloadNotes(): void {
     this.apiService.getNotes()
       .pipe(
         takeUntil(this.destroy$),
         catchError((error) => {
           this.toastr.ErrorToaster('Error loading notes:', error);
-          return [];
+          return of([]);
         })
       )
       .subscribe((notes) => {
         this.notes = notes;
-        if (this.noteId) {
-          const foundNote = this.notes.find(n => n.id === this.noteId);
-          if (foundNote) {
-            this.selectedNote = foundNote;
-          } else {
-            this.loadNoteDetails(this.noteId);
-          }
-        }
+        this.trySelectNote();
       });
   }
 
-  loadNoteDetails(id: number): void {
+  private loadNoteDetails(id: number): void {
     this.apiService.getNoteById(id)
       .pipe(
         takeUntil(this.destroy$),
         catchError((error) => {
           this.toastr.ErrorToaster('Error loading note details:', error);
           this.router.navigate(['/notes']);
-          return [];
+          return of(undefined);
         })
       )
       .subscribe((note) => {
@@ -113,7 +108,6 @@ export class ShowNoteComponent implements OnInit, OnDestroy {
 
   deleteNote(note: Notes): void {
     this.alert.confirm('Delete Note ?', `Are you sure you want to delete this note "${note.title}" ?`, 'Delete', 'Keep', () => {
-      // Store the index of the current note before deletion
       const currentIndex = this.notes.findIndex(n => n.id === note.id);
 
       this.apiService.deleteNote(note.id)
@@ -121,27 +115,25 @@ export class ShowNoteComponent implements OnInit, OnDestroy {
           takeUntil(this.destroy$),
           catchError((error) => {
             this.toastr.ErrorToaster('Error deleting note:', error);
-            return [];
+            return of(null);
           })
         )
         .subscribe((res) => {
-          this.toastr.SuccessToaster("Note Deleted Successfully", res.message || "Deleted",);
+          if (res) {
+            this.toastr.SuccessToaster("Note Deleted Successfully", res.message || "Deleted");
 
-          // After successful deletion, navigate to the previous note if it exists
-          if (currentIndex > 0) {
-            const previousNote = this.notes[currentIndex - 1];
-            this.router.navigate(['/notes/show', previousNote.id]);
-          } else if (this.notes.length > 1) {
-            // If we're deleting the first note, show the next one
-            const nextNote = this.notes[1];
-            this.router.navigate(['/notes/show', nextNote.id]);
-          } else {
-            // If no notes left, navigate to notes list
-            this.router.navigate(['/notes']);
+            if (currentIndex > 0) {
+              const previousNote = this.notes[currentIndex - 1];
+              this.router.navigate(['/notes/show', previousNote.id]);
+            } else if (this.notes.length > 1) {
+              const nextNote = this.notes[1];
+              this.router.navigate(['/notes/show', nextNote.id]);
+            } else {
+              this.router.navigate(['/notes']);
+            }
+
+            this.reloadNotes();
           }
-          this.loadNotesAndMaybeSelectNote();
-        }, (err) => {
-          this.toastr.ErrorToaster("Error Deleting Note", err.message || "Error",);
         });
     });
   }
