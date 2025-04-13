@@ -9,18 +9,15 @@ import { AlertService } from '../alert/alert.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
-  isMenuOpen = false;
   isLogged = false;
+  isHomeActive = false;
+  isCreateActive = false;
 
   constructor(private router: Router, private authservice: AuthService, private alert: AlertService) { }
 
   ngOnInit(): void {
-    this.isLogged = this.authservice.isLogged()
-  }
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isLogged = this.authservice.isLogged();
+    this.setActiveLink("home");
   }
 
   signupClicked() {
@@ -37,22 +34,35 @@ export class NavBarComponent implements OnInit {
       this.alert.success("Logged out", "Logged out successfully");
       this.router.navigate(['/login']);
       this.isLogged = false;
+      this.setActiveLink();
     });
   }
 
-  navigateToHome() {
+  navigateTo(path: string, activeLink: string = 'home') {
     if (this.authservice.isLogged()) {
-      this.router.navigate(['/notes']);
+      this.router.navigate([path]);
+      this.setActiveLink(activeLink);
     } else {
       this.router.navigate(['/login']);
     }
   }
 
+  navigateToHome() {
+    this.navigateTo('/notes', 'home');
+  }
+
   navigateToCreate() {
-    if (this.authservice.isLogged()) {
-      this.router.navigate(['notes/create']);
-    } else {
-      this.router.navigate(['/login']);
-    }
+    this.navigateTo('/notes/create', 'create');
+  }
+
+  navigateToLanding() {
+    this.router.navigate(['/landing']);
+  }
+
+  setActiveLink(activeLink?: string) {
+    this.isHomeActive = activeLink === 'home';
+    this.isCreateActive = activeLink === 'create';
   }
 }
+
+

@@ -1,55 +1,41 @@
-$primary-color: #FF6B00;
-$text-color: #3D2B1F;
+// This file contains the styles for the NavBar component.
+// Define Color Variables
+$light-brown: #F8EEE2;
+$dark-brown: #FF6B00;
+$darker-brown: #4a3629;
+$light-hover: #e9cdb2;
+$nav-bg: #f5f2f1;
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 4rem;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1000;
 
-  .nav-logo {
-    .logo {
-      height: 40px;
-    }
-  }
+.bg-body-navbar {
+  background-color: $nav-bg;
+}
 
-  .hamburger-menu {
-    display: none;
-    background: none;
-    border: none;
+.navbar {
+
+  font-family: "Merienda-var";
+
+  a {
     cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
+    color: $dark-brown;
 
-    span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background-color: $text-color;
-      margin: 5px 0;
-      transition: 0.3s;
+
+
+    &:hover {
+      color: $darker-brown;
     }
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-
-    a {
-      text-decoration: none;
-      color: $text-color;
-      font-weight: 500;
-      cursor: pointer;
-
-      &:hover {
-        color: $primary-color;
-      }
-    }
+  .navbar-brand {
+    font-family: "Caesar-Dressing";
+    color: $darker-brown;
   }
+
+  .active {
+    color: $darker-brown;
+    font-weight: 600;
+  }
+
 
   .nav-buttons {
     display: flex;
@@ -63,15 +49,25 @@ $text-color: #3D2B1F;
     }
 
     .btn-signup {
-      background-color: $primary-color;
+      background-color: $dark-brown;
       color: white;
       border: none;
+
+      &:hover {
+        background-color: $darker-brown;
+        border: 1px solid $darker-brown;
+      }
     }
 
     .btn-login {
       background-color: transparent;
-      border: 1px solid $primary-color;
-      color: $primary-color;
+      border: 1px solid $dark-brown;
+      color: $dark-brown;
+
+      &:hover {
+        background-color: $light-hover;
+        border: 1px solid $light-hover;
+      }
     }
 
     .btn-logout {
@@ -82,44 +78,7 @@ $text-color: #3D2B1F;
       &:hover {
         background-color: darkred;
         border: 1px solid darkred;
-        // color: black;
-
       }
-    }
-  }
-}
-
-// Responsive styles
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 1rem 2rem;
-
-    .hamburger-menu {
-      display: block;
-    }
-
-    .nav-links,
-    .nav-buttons {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 0;
-      right: 0;
-      background-color: white;
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
-      z-index: 999;
-
-      &.active {
-        display: flex;
-      }
-    }
-
-    .nav-buttons {
-      top: 200px;
     }
   }
 }
