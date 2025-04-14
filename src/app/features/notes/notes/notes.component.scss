@@ -21,3 +21,101 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.note {
+  background: #fffdf5;
+  width: 100%;
+  min-height: 180px;
+  padding: 20px 15px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.6;
+  background-image: linear-gradient(to bottom, transparent 29px, #e0e0e0 30px);
+  background-size: 100% 30px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.note h3 {
+  margin: 0;
+  font-size: 1.2em;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  color: #2d2d2d;
+}
+
+.note p {
+  font-size: 1em;
+  color: #333;
+  margin: 10px 0 0 0;
+  white-space: pre-wrap;
+  flex-grow: 1;
+}
+
+.priority {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.75em;
+  color: white;
+}
+
+.high {
+  background-color: #e74c3c;  /* red */
+}
+
+.medium {
+  background-color: #f39c12;  /* orange-yellow */
+}
+
+.low {
+  background-color: #27ae60;  /* green */
+}
+
+.note-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.note-buttons button {
+  border: none;
+  background: rgba(0,0,0,0.05);
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  color: #333;
+  margin: 2px 0;
+  flex: 1 0 45%;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.note-buttons button:hover {
+  background: rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.note-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 0.8em;
+}
+
+.category {
+  background-color: #d8bba2	;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 12px;
+  font-size: .9em;
+  white-space: nowrap;
+}
