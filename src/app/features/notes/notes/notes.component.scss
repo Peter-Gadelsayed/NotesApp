@@ -1,4 +1,4 @@
-.animated-btn:hover i {
+.animated-btn:hover {
   animation: bounce 0.5s ease infinite;
 }
 
@@ -28,7 +28,7 @@
   min-height: 180px;
   padding: 20px 15px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@
   border: 1px solid #ddd;
   box-sizing: border-box;
 }
+
 .note h3 {
   margin: 0;
   font-size: 1.2em;
@@ -66,15 +67,18 @@
 }
 
 .high {
-  background-color: #e74c3c;  /* red */
+  background-color: #e74c3c;
+  /* red */
 }
 
 .medium {
-  background-color: #f39c12;  /* orange-yellow */
+  background-color: #f39c12;
+  /* orange-yellow */
 }
 
 .low {
-  background-color: #27ae60;  /* green */
+  background-color: #27ae60;
+  /* green */
 }
 
 .note-buttons {
@@ -86,7 +90,7 @@
 
 .note-buttons button {
   border: none;
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
   padding: 5px 8px;
   border-radius: 5px;
   cursor: pointer;
@@ -99,7 +103,7 @@
 }
 
 .note-buttons button:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
 }
 
@@ -112,7 +116,7 @@
 }
 
 .category {
-  background-color: #d8bba2	;
+  background-color: #d8bba2;
   color: white;
   padding: 8px 8px;
   border-radius: 12px;

@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/authantications/auth.service';
 import { AlertService } from '../alert/alert.service';
+import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,6 +10,13 @@ import { AlertService } from '../alert/alert.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+
+  // FontAwesome Icons
+  rightFromBracket = faRightFromBracket;
+  rightToBracket = faRightFromBracket;
+  userPlus = faUserPlus;
+
+
   isLogged = false;
   isHomeActive = false;
   isCreateActive = false;

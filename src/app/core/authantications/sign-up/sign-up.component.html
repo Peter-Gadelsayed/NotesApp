@@ -51,7 +51,7 @@
           <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
           </div>
-          <button type="submit" class="btn btn-dark-brown w-100">Sign Up</button>
+          <button type="submit" class="btn btn-dark-brown w-100"><fa-icon [icon]="userPlus"></fa-icon> Sign Up</button>
         </form>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <div class="text-center w-75">
         <h3 class="fw-bold">Already have an account?</h3>
         <p>Login and start managing your activities today!</p>
-        <a routerLink="/login" class="btn btn-light-brown">Log In</a>
+        <a routerLink="/login" class="btn btn-light-brown"><fa-icon [icon]="rightToBracket"></fa-icon> Log In</a>
       </div>
     </div>
 

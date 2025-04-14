@@ -9,8 +9,8 @@
           <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input type="text" placeholder="Minimum 3 characters" class="form-control" id="title" formControlName="title"
-                [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+              <input type="text" placeholder="Minimum 3 characters" class="form-control" id="title"
+                formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
               <div class="invalid-feedback" *ngIf="submitted && f['title'].errors">
                 Title is required
               </div>
@@ -18,8 +18,8 @@
 
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea placeholder="Minimum 10 characters" class="form-control" id="content" formControlName="content" rows="5"
-                [ngClass]="{ 'is-invalid': submitted && f['content'].errors }"></textarea>
+              <textarea placeholder="Minimum 10 characters" class="form-control" id="content" formControlName="content"
+                rows="5" [ngClass]="{ 'is-invalid': submitted && f['content'].errors }"></textarea>
               <div class="invalid-feedback" *ngIf="submitted && f['content'].errors">
                 Content is required
               </div>
@@ -59,8 +59,9 @@
             </div>
             <!-- [disabled]="noteForm.invalid" -->
             <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" (click)="clear()">Reset</button>
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button type="button" class="btn btn-secondary" (click)="clear()"><fa-icon
+                  [icon]="arrowRotateLeft"></fa-icon> Reset</button>
+              <button type="submit" class="btn btn-primary"><fa-icon [icon]="squarePlus"></fa-icon> Create</button>
             </div>
           </form>
         </div>

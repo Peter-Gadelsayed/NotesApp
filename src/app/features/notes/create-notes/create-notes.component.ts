@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { Notes } from 'src/app/models/notes';
+import { faArrowRotateLeft, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-notes',
@@ -10,6 +11,11 @@ import { Notes } from 'src/app/models/notes';
   styleUrls: ['./create-notes.component.scss']
 })
 export class CreateNotesComponent implements OnInit {
+
+  // FontAwesome Icons
+  squarePlus = faSquarePlus;
+  arrowRotateLeft = faArrowRotateLeft;
+
   noteForm!: FormGroup;
   submitted = false;
 

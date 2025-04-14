@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-log-in',
@@ -10,6 +11,11 @@ import { ToasterService } from 'src/app/shared/toaster/toaster.service';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
+
+  // FontAwesome Icons
+  rightToBracket = faRightFromBracket;
+  userPlus = faUserPlus;
+
 
   constructor(
     private fb: FormBuilder,

@@ -4,6 +4,8 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert/alert.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { faCopy, faEye, faPenToSquare, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-notes',
@@ -17,6 +19,14 @@ export class NotesComponent {
   delBtnText: string = 'Delete';
   editBtnText: string = 'Edit';
   duplicateBtnText: string = 'Duplicate';
+
+  // FontAwesome Icons
+  penToSquare = faPenToSquare;
+  eye = faEye;
+  copy = faCopy;
+  trash = faTrash;
+  plus = faPlus;
+
 
 
   constructor(private apiService: ApiService, private router: Router, private alert: AlertService, private toaster: ToasterService) { }

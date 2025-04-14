@@ -5,6 +5,7 @@ import { LogInComponent } from './authantications/log-in/log-in.component';
 import { SignUpComponent } from './authantications/sign-up/sign-up.component';
 import { LandingComponent } from './landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    FontAwesomeModule
   ],
   exports: [
 

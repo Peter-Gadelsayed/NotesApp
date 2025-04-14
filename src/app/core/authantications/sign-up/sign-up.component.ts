@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,6 +11,13 @@ import { ToasterService } from 'src/app/shared/toaster/toaster.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
+
+  // FontAwesome Icons
+  rightToBracket = faRightFromBracket;
+  userPlus = faUserPlus;
+
+
+
   signupForm: FormGroup;
   submitted = false;
   errorMessage!: string;

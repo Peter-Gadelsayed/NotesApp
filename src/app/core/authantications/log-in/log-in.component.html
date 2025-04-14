@@ -27,7 +27,8 @@
           <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
           </div>
-          <button type="submit" class="btn btn-dark-brown w-100">Log In</button>
+          <button type="submit" class="btn btn-dark-brown w-100"><fa-icon [icon]="rightToBracket"></fa-icon> Log
+            In</button>
         </form>
       </div>
     </div>
@@ -37,7 +38,7 @@
       <div class="text-center w-75">
         <h3 class="fw-bold">New Here?</h3>
         <p>Sign up and discover more ...</p>
-        <a routerLink="/signup" class="btn btn-light-brown">Sign Up</a>
+        <a routerLink="/signup" class="btn btn-light-brown"><fa-icon [icon]="userPlus"></fa-icon> Sign Up</a>
       </div>
     </div>
 

@@ -26,12 +26,13 @@
       </ul>
       <div class="nav-buttons flex-lg-row flex-column align-items-start"
         [ngStyle]="isLogged ? { 'display': 'none' } : { 'display': 'flex' }">
-        <button class="btn-login" (click)="loginClicked()">Log In</button>
-        <button class="btn-signup" (click)="signupClicked()">Sign Up</button>
+        <button class="btn-login" (click)="loginClicked()"><fa-icon [icon]="rightToBracket"></fa-icon> Log In</button>
+        <button class="btn-signup" (click)="signupClicked()"><fa-icon [icon]="userPlus"></fa-icon> Sign Up</button>
       </div>
       <div class="nav-buttons flex-lg-row flex-column align-items-start"
         [ngStyle]="isLogged ? { 'display': 'flex' } : { 'display': 'none' }">
-        <button class="btn-logout" (click)="logoutClicked()">Log Out</button>
+        <button class="btn-logout" (click)="logoutClicked()"><fa-icon [icon]="rightFromBracket"></fa-icon> Log
+          Out</button>
       </div>
     </div>
   </div>

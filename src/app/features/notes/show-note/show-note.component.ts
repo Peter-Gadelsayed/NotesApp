@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { catchError, Subject, takeUntil, switchMap, of } from 'rxjs';
 import { AlertService } from 'src/app/shared/alert/alert.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-show-note',
@@ -17,6 +18,9 @@ export class ShowNoteComponent implements OnInit, OnDestroy {
   notes: Notes[] = [];
   selectedNote?: Notes;
   noteId?: number;
+
+  // FontAwesome Icons
+  plus = faPlus;
 
   OpenBtnText: string = 'View';
   delBtnText: string = 'Delete';
