@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/authantications/auth.service';
 import { AlertService } from '../alert/alert.service';
@@ -9,19 +9,27 @@ import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icon
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
-
+export class NavBarComponent implements OnInit, OnChanges {
   // FontAwesome Icons
   rightFromBracket = faRightFromBracket;
   rightToBracket = faRightFromBracket;
   userPlus = faUserPlus;
 
-
+  @Input() isAuthenticated: boolean = false;
   isLogged = false;
   isHomeActive = false;
   isCreateActive = false;
 
   constructor(private router: Router, private authservice: AuthService, private alert: AlertService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isAuthenticated']) {
+      this.isLogged = changes['isAuthenticated'].currentValue;
+      if (!this.isLogged) {
+        this.setActiveLink();
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.isLogged = this.authservice.isLogged();

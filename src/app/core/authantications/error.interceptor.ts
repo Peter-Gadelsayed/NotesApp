@@ -4,10 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToasterService, private router: Router) { }
+  constructor(private toastr: ToasterService, private router: Router, private authservice: AuthService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -25,11 +26,13 @@ export class ErrorInterceptor implements HttpInterceptor {
               errorMessage = 'Unauthorized: Please login again';
               this.router.navigate(['/login']);
               localStorage.removeItem('token');
+              this.authservice.isLogged = () => false;
               break;
             case 403:
               errorMessage = 'Access denied, Please login again';
               localStorage.removeItem('token');
               this.router.navigate(['/login']);
+              this.authservice.isLogged = () => false;
               break;
             case 404:
               errorMessage = 'Resource not found';
