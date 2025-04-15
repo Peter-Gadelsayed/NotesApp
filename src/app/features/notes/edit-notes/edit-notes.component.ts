@@ -13,6 +13,7 @@ export class EditNotesComponent implements OnInit {
   editForm!: FormGroup;
   noteId!: number;
   note!: Notes;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +45,13 @@ export class EditNotesComponent implements OnInit {
     });
   }
 
+  get form() {
+    return {
+      dirty: this.editForm.dirty,
+      submitted: this.submitted
+    };
+  }
+
   loadNote(id: number) {
     this.apiService.getNoteById(id).subscribe(
       (response: Notes) => {
@@ -70,6 +78,8 @@ export class EditNotesComponent implements OnInit {
         ...this.editForm.value,
         id: this.noteId
       };
+      this.submitted = true;
+
 
       this.apiService.updateNote(this.noteId, updatedNote).subscribe(
         () => {

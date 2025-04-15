@@ -37,6 +37,13 @@ export class SignUpComponent {
     return this.signupForm.controls;
   }
 
+  get form() {
+    return {
+      dirty: this.signupForm.dirty,
+      submitted: this.submitted
+    };
+  }
+
   onSubmit() {
     this.submitted = true;
 

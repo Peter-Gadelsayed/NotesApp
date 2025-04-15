@@ -39,6 +39,13 @@ export class CreateNotesComponent implements OnInit {
     return this.noteForm.controls;
   }
 
+  get form() {
+    return {
+      dirty: this.noteForm.dirty,
+      submitted: this.submitted
+    };
+  }
+
   onSubmit() {
     this.submitted = true;
     console.log(this.noteForm.valid); // Debugging
