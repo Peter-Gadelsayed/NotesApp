@@ -3,25 +3,28 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h4 class="mb-0">Create Note</h4>
+          <h4 class="mb-0">{{ isEditMode ? 'Edit' : 'Create' }} Note</h4>
         </div>
         <div class="card-body">
           <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input type="text" placeholder="Minimum 3 characters" class="form-control" id="title"
-                formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
-              <div class="invalid-feedback" *ngIf="submitted && f['title'].errors">
-                Title is required
+                formControlName="title" [ngClass]="{ 'is-invalid': (submitted || f['title'].touched) && f['title'].errors }">
+              <div class="invalid-feedback" *ngIf="(submitted || f['title'].touched) && f['title'].errors">
+                <div *ngIf="f['title'].errors?.['required']">Title is required</div>
+                <div *ngIf="f['title'].errors?.['minlength']">Title must be at least 3 characters</div>
               </div>
             </div>
 
+            <!-- Apply the same pattern to other form controls -->
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
               <textarea placeholder="Minimum 10 characters" class="form-control" id="content" formControlName="content"
-                rows="5" [ngClass]="{ 'is-invalid': submitted && f['content'].errors }"></textarea>
-              <div class="invalid-feedback" *ngIf="submitted && f['content'].errors">
-                Content is required
+                rows="5" [ngClass]="{ 'is-invalid': (submitted || f['content'].touched) && f['content'].errors }"></textarea>
+              <div class="invalid-feedback" *ngIf="(submitted || f['content'].touched) && f['content'].errors">
+                <div *ngIf="f['content'].errors?.['required']">Content is required</div>
+                <div *ngIf="f['content'].errors?.['minlength']">Content must be at least 10 characters</div>
               </div>
             </div>
 
@@ -30,7 +33,7 @@
               <input type="text" class="form-control" id="category" formControlName="category"
                 [ngClass]="{ 'is-invalid': submitted && f['category'].errors }">
               <div class="invalid-feedback" *ngIf="submitted && f['category'].errors">
-                Category is required
+                <div *ngIf="f['category'].errors?.['required']">Category is required</div>
               </div>
             </div>
 
@@ -44,7 +47,7 @@
                 <option value="high">High</option>
               </select>
               <div class="invalid-feedback" *ngIf="submitted && f['priority'].errors">
-                Priority is required
+                <div *ngIf="f['priority'].errors?.['required']">Priority is required</div>
               </div>
             </div>
 
@@ -54,14 +57,19 @@
                 [ngClass]="{ 'is-invalid': submitted && f['tags'].errors }">
               <small class="text-muted my-1">Separate tags with commas</small>
               <div class="invalid-feedback" *ngIf="submitted && f['tags'].errors">
-                Tags is required
+                <div *ngIf="f['tags'].errors?.['required']">Tags are required</div>
               </div>
             </div>
-            <!-- [disabled]="noteForm.invalid" -->
+
             <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" (click)="clear()"><fa-icon
-                  [icon]="arrowRotateLeft"></fa-icon> Reset</button>
-              <button type="submit" class="btn btn-primary"><fa-icon [icon]="squarePlus"></fa-icon> Create</button>
+              <button type="button" class="btn btn-secondary d-flex align-items-center" (click)="cancel()">
+                <fa-icon [icon]="arrowRotateLeft" class="me-2"></fa-icon>
+                {{ isEditMode ? 'Cancel' : 'Reset' }}
+              </button>
+              <button type="submit" class="btn btn-primary d-flex align-items-center">
+                <fa-icon [icon]="isEditMode ? save : squarePlus" class="me-2"></fa-icon>
+                {{ isEditMode ? 'Save Changes' : 'Create' }}
+              </button>
             </div>
           </form>
         </div>
