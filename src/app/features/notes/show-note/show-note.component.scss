@@ -9,6 +9,7 @@
   &.active {
     background-color: #e9ecef;
     border-color: #dee2e6;
+    color: #000;
   }
 }
 
@@ -62,3 +63,67 @@
     font-weight: bold;
   }
 }
+
+.main-card {
+  background: #fffdf5;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background-image: linear-gradient(to bottom, transparent 29px, #e0e0e0 30px);
+  background-size: 100% 30px;
+  line-height: 1.6;
+}
+
+.main-card-body {
+  padding: 20px;
+}
+
+.main-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.notes-head {
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+  border-bottom: 3px solid #DDD;
+  min-width: 70px;
+}
+
+.notes-text {
+  margin: 0;
+  flex: 1;
+}
+
+
+.priority-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  color: white;
+  text-transform: capitalize;
+}
+
+.priority-badge.high {
+  background-color: #e74c3c;
+}
+
+.priority-badge.medium {
+  background-color: #f39c12;
+}
+
+.priority-badge.low {
+  background-color: #27ae60;
+}
+

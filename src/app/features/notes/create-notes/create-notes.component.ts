@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { Notes } from 'src/app/models/notes';
 import { faArrowRotateLeft, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-notes',
@@ -19,7 +20,7 @@ export class CreateNotesComponent implements OnInit {
   noteForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToasterService) { }
+  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToasterService, private router:Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -54,6 +55,7 @@ export class CreateNotesComponent implements OnInit {
     }
     this.postAPI(this.noteForm.value);
     this.clear();
+    this.router.navigate(["/notes"]);
   }
 
   postAPI(data: Notes) {
