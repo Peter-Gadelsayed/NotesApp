@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -21,7 +22,8 @@ export class LogInComponent implements OnInit {
     private fb: FormBuilder,
     private authservice: AuthService,
     private toastr: ToasterService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class LogInComponent implements OnInit {
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
-          window.location.replace('/notes');
+          this.router.navigate(['/notes']);   // window.location.replace('/notes');
           this.spinnerService.hide();
         }, 3000);
       },
