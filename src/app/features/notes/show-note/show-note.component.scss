@@ -102,6 +102,9 @@
 .notes-text {
   margin: 0;
   flex: 1;
+  word-wrap: break-word;
+  white-space: normal;
+  min-width: 0;
 }
 
 
