@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="mt-4">
   <div class="row flex-md-row flex-column-reverse">
     <div class="col-md-4  col-12">
       <div class="card">
@@ -30,37 +30,19 @@
     </div>
 
     <div class="col-md-8">
-      <div class="main-card" *ngIf="selectedNote">
-        <div class="main-card-body">
-          <div class="main-text-container">
-            <div class="note-row">
-              <p class="notes-head">Title:</p>
-              <p class="notes-text">{{selectedNote.title}}</p>
-            </div>
-            
-            <div class="note-row">
-              <p class="notes-head">Content:</p>
-              <p class="notes-text">{{selectedNote.content}}</p>
-            </div>
-            
-            <div class="note-row">
-              <p class="notes-head">Priority:</p>
-              <p class="notes-text">
-                <span class="priority-badge" [ngClass]="selectedNote.priority | lowercase">
-                  {{selectedNote.priority}}
-                </span>
-              </p>
-            </div>
-            
-            <div class="note-row">
-              <p class="notes-head">Category:</p>
-              <p class="notes-text"> {{selectedNote.category}}</p>
-            </div>
-            
-            <div class="note-row">
-              <p class="notes-head">Tags:</p>
-              <p class="notes-text">{{selectedNote.tags}}</p>
-            </div>
+      <div class="card" *ngIf="selectedNote">
+        <div class="card-body">
+          <div class="text-container">
+            <p class="notes-head">Tittle:</p>
+            <p class="notes-text">{{selectedNote.title}}</p>
+            <p class="notes-head">Content:</p>
+            <p class="notes-text">{{selectedNote.content}}</p>
+            <p class="notes-head">Priority:</p>
+            <p class="notes-text">{{selectedNote.priority}}</p>
+            <p class="notes-head">Category:</p>
+            <p class="notes-text">{{selectedNote.category}}</p>
+            <p class="notes-head">Tags:</p>
+            <p class="notes-text">{{selectedNote.tags}}</p>
           </div>
         </div>
       </div>
