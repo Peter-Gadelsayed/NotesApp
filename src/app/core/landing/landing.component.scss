@@ -50,15 +50,16 @@ body {
 }
 
 /* Button styles */
-.btn-try-free, .btn-try-now {
+.btn-try-free,
+.btn-try-now {
   padding: 1.2rem 2.5rem;
-      background-color: $primary-color;
-      color: white;
-      border: none;
+  background-color: $primary-color;
+  color: white;
+  border: none;
   border-radius: 30px;
   font-size: 1.2rem;
-      font-weight: 500;
-      cursor: pointer;
+  font-weight: 500;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
@@ -91,7 +92,7 @@ body {
 .pen-image {
   position: absolute;
   top: -30px;
-  left:530px;
+  left: 530px;
   width: 80px;
   height: auto;
   transform: rotate(15deg);
@@ -118,7 +119,7 @@ body {
 
   p {
     font-size: 1.4rem;
-  color: rgba($text-color, 0.8);
+    color: rgba($text-color, 0.8);
     margin-bottom: 2.5rem;
     line-height: 1.6;
   }
@@ -142,7 +143,7 @@ body {
   margin-bottom: 25px;
 
   h3 {
-  margin: 0;
+    margin: 0;
     font-size: 2.2rem;
     color: $text-color;
   }
@@ -165,7 +166,7 @@ body {
   margin-bottom: 15px;
 
   h4 {
-  margin: 0;
+    margin: 0;
     font-size: 1.6rem;
     color: $text-color;
     margin-left: 15px;
@@ -184,21 +185,21 @@ body {
   align-items: center;
 
   &:before {
-  content: '';
-  position: absolute;
+    content: '';
+    position: absolute;
     width: 18px;
     height: 18px;
-  background-color: white;
-  border-radius: 50%;
-}
+    background-color: white;
+    border-radius: 50%;
+  }
 
   &:after {
-  content: '';
-  position: absolute;
+    content: '';
+    position: absolute;
     width: 6px;
     height: 6px;
     background-color: $primary-color;
-  border-radius: 50%;
+    border-radius: 50%;
   }
 }
 
@@ -211,7 +212,7 @@ body {
   align-items: center;
 
   &:before {
-  content: '🏃';
+    content: '🏃';
     font-size: 25px;
   }
 }
@@ -247,6 +248,7 @@ body {
   max-width: 250px;
   height: auto;
 }
+
 /* Plan your day section */
 .plan-day-section {
   padding: 4rem 0;
@@ -693,68 +695,68 @@ body {
   text-align: center;
 }
 
-  .about-content {
-    max-width: 800px;
-    margin: 0 auto 4rem;
+.about-content {
+  max-width: 800px;
+  margin: 0 auto 4rem;
 }
 
 .about-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
 
 .about-content h2 span {
   color: #FF6B00;
 }
 
 .about-content p {
-      font-size: 1.2rem;
+  font-size: 1.2rem;
   color: rgba(61, 43, 31, 0.8);
-      line-height: 1.6;
-  }
-
-  .about-features {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+  line-height: 1.6;
 }
 
-    .feature-item {
-      flex: 1;
-      min-width: 250px;
-      max-width: 300px;
-      padding: 2rem;
-      background-color: #FFF5EB;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
+.about-features {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 2rem;
+  background-color: #FFF5EB;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 
 .feature-item:hover {
-        transform: translateY(-5px);
-      }
+  transform: translateY(-5px);
+}
 
-      .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   color: #FF6B00;
 }
 
 .feature-icon i {
   font-size: 2.5rem;
-      }
+}
 
 .feature-item h3 {
   color: #FF6B00;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
 .feature-item p {
   color: rgba(61, 43, 31, 0.8);
-        line-height: 1.5;
+  line-height: 1.5;
 }
 
 /* Footer */
@@ -775,6 +777,7 @@ body {
 }
 
 .footer-logo h2 {
+  font-family: "Caesar-Dressing";
   font-size: 2rem;
   color: #FF6B00;
   margin: 0;
@@ -854,7 +857,11 @@ section {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
-  .feature-card, .plan-day-card, .facts-card, .clean-card {
+
+  .feature-card,
+  .plan-day-card,
+  .facts-card,
+  .clean-card {
     flex-direction: column;
     gap: 2rem;
   }
@@ -874,7 +881,8 @@ section {
 
   .testimonial-card {
     max-width: 100%;
-  }}
+  }
+}
 
 /* Contact Section */
 .contact-section {
@@ -972,7 +980,8 @@ section {
 .form-group {
   margin-bottom: 1rem;
 
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
