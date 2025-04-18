@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse } from 'src/app/models/auth-response';
 import { Credentials, User } from 'src/app/models/user';
@@ -11,13 +12,14 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private apiUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(credentials: Credentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
         tap(response => {
           this.setToken(response.token);
+          this.router.navigate(['/notes']);
         })
       );
   }
@@ -48,5 +50,7 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem('token');
+    this.isLogged = () => false;
+    this.router.navigate(['/login']);
   }
 }
