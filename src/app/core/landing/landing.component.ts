@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/authantications/services/auth.service';
 import { Router } from '@angular/router';
-import { faStar} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faBullseye, faChevronLeft, faChevronRight, faPencilAlt, fas, faStar, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -11,9 +11,21 @@ import { faStar} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
-  
+
+  // FontAwesome Icons
   star = faStar;
-  items = [1,2,3,4,5,6,7,8,9,10];
+  chevronLeft = faChevronLeft;
+  chevronRight = faChevronRight;
+  arrowLeft = faArrowLeft;
+  arrowRight = faArrowRight;
+  pencilAlt = faPencilAlt;
+  bullseye = faBullseye;
+  syncAlt = faSyncAlt;
+
+
+  // Define the items array with numbers from 1 to 10
+  items = [1, 2, 3, 4, 5];
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
