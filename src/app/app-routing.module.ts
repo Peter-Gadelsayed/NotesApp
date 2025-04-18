@@ -6,7 +6,7 @@ import { SignUpComponent } from './core/authantications/sign-up/sign-up.componen
 import { LandingComponent } from './core/landing/landing.component';
 import { authGuard } from './core/authantications/guards/auth.guard';
 import { loginPreventGuard } from './core/authantications/guards/login-prevent.guard';
-import { FormGuard } from './core/form.guard';
+import { FormGuard } from './core/authantications/guards/form.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },

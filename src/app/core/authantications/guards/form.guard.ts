@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AlertService } from '../shared/alert/alert.service';
+import { AlertService } from '../../../shared/alert/alert.service';
 
 export interface FormComponent {
   form: {

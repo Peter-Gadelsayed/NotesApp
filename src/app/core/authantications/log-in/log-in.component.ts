@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';

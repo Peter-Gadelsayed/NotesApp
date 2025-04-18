@@ -5,7 +5,7 @@ import { NotesComponent } from './notes/notes.component';
 import { EditNotesComponent } from './edit-notes/edit-notes.component';
 import { ShowNoteComponent } from './show-note/show-note.component';
 import { NotFoundComponent } from 'src/app/shared/not-found/not-found.component';
-import { FormGuard } from 'src/app/core/form.guard';
+import { FormGuard } from 'src/app/core/authantications/guards/form.guard';
 
 const routes: Routes = [
 

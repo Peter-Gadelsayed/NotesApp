@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { Notes } from 'src/app/models/notes';
 import { faArrowRotateLeft, faSquarePlus } from '@fortawesome/free-solid-svg-icons';

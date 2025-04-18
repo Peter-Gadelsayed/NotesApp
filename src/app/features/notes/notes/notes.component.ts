@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Notes } from 'src/app/models/notes';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/shared/alert/alert.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';

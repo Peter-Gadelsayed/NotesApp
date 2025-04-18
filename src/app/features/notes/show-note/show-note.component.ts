@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Notes } from 'src/app/models/notes';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { catchError, Subject, takeUntil, switchMap, of } from 'rxjs';
 import { AlertService } from 'src/app/shared/alert/alert.service';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';

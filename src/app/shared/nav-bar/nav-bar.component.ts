@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../core/authantications/auth.service';
+import { AuthService } from '../../core/authantications/services/auth.service';
 import { AlertService } from '../alert/alert.service';
 import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 

@@ -10,7 +10,7 @@ import { AuthInterceptor } from './core/authantications/interceptors/auth.interc
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { httpInterceptorProviders } from './core/authantications';
+import { httpInterceptorProviders } from './core/authantications/interceptors';
 
 @NgModule({
   declarations: [
