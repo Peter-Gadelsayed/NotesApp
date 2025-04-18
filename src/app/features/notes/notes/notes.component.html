@@ -1,36 +1,57 @@
-<div class="my-2 my-lg-3">
-  <div class="d-flex justify-content-between align-items-center ">
-    <h2 class="h2">Your Notes</h2>
-    <a (click)="createNote()" class="btn btn-success animated-btn" title="New Note"><fa-icon [icon]="plus"></fa-icon>
-      New</a>
-  </div>
-
-  <div class="row my-2 my-lg-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4" *ngIf="notes.length > 0">
-    <div class="col" *ngFor="let note of notes">
-      <div class="note">
-        <div class="priority" [ngClass]="note.priority.toLowerCase()">
-          {{note.priority}}
+<div class="mt-4">
+  <div class="row flex-md-row flex-column-reverse">
+    <div class="col-md-4  col-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Notes List</h5>
+          <button class="btn btn-success animated-btn" title="New Note" (click)="createNote()"><fa-icon
+              [icon]="plus"></fa-icon> New</button>
         </div>
         <div class="card-body">
-          <h3>{{note.title}}</h3>
-          <p class="truncate-multiline">{{note.content}}</p>
-          <div class="note-buttons">
-            <button (click)="openNote(note)"><fa-icon [icon]="eye"></fa-icon> View</button>
-            <button (click)="editNote(note)"><fa-icon [icon]="penToSquare"></fa-icon> Update</button>
-            <button (click)="duplicateNote(note)"><fa-icon [icon]="copy"></fa-icon> Copy</button>
-            <button (click)="delNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
-          </div>
-          <div class="note-meta">
-            <span class="category">{{note.category}}</span>
+          <div class="list-group">
+            <a *ngFor="let note of notes" class="list-group-item list-group-item-action"
+              [class.active]="selectedNote?.id === note.id" (click)="openNote(note)">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="mb-1">{{note.title}}</h6>
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-primary" (click)="editNote(note)">
+                    {{editBtnText}}
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteNote(note)">
+                    {{delBtnText}}
+                  </button>
+                </div>
+              </div>
+              <small class="text-muted">{{note.createdAt | date:'medium'}}</small>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="my-2 my-lg-3" *ngIf="notes.length === 0">
-    <div class="alert alert-info text-center" role="alert">
-      <h4 class="alert-heading">No Notes found!</h4>
-      <p>Click on the New button to create a new note.</p>
+
+    <div class="col-md-8">
+      <div class="card" *ngIf="selectedNote">
+        <div class="card-body">
+          <div class="text-container">
+            <p class="notes-head">Tittle:</p>
+            <p class="notes-text">{{selectedNote.title}}</p>
+            <p class="notes-head">Content:</p>
+            <p class="notes-text">{{selectedNote.content}}</p>
+            <p class="notes-head">Priority:</p>
+            <p class="notes-text">{{selectedNote.priority}}</p>
+            <p class="notes-head">Category:</p>
+            <p class="notes-text">{{selectedNote.category}}</p>
+            <p class="notes-head">Tags:</p>
+            <p class="notes-text">{{selectedNote.tags}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="!selectedNote && noteId">
+        <div class="card-body">
+          <p class="text-center">Note not found</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
