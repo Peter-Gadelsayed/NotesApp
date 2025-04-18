@@ -4,8 +4,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { LogInComponent } from './core/authantications/log-in/log-in.component';
 import { SignUpComponent } from './core/authantications/sign-up/sign-up.component';
 import { LandingComponent } from './core/landing/landing.component';
-import { authGuard } from './core/authantications/auth.guard';
-import { loginPreventGuard } from './core/authantications/login-prevent.guard';
+import { authGuard } from './core/authantications/guards/auth.guard';
+import { loginPreventGuard } from './core/authantications/guards/login-prevent.guard';
 import { FormGuard } from './core/form.guard';
 
 const routes: Routes = [
