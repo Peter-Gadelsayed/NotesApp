@@ -48,6 +48,7 @@ export class AuthService {
       return true
     }
   }
+
   logout(): void {
     localStorage.removeItem('token');
     this.isLogged = () => false;

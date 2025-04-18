@@ -5,24 +5,28 @@
       <a (click)="createNote()" class="btn btn-success animated-btn" title="New Note"><fa-icon [icon]="plus"></fa-icon>
         New</a>
     </div>
-  
+
     <div class="row my-2 my-lg-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4" *ngIf="notes.length > 0">
-      <div class="col" *ngFor="let note of notes">
+      <div class="col h-100" *ngFor="let note of notes">
         <div class="note">
           <div class="priority" [ngClass]="note.priority.toLowerCase()">
             {{note.priority}}
           </div>
-          <div class="card-body">
-            <h3>{{note.title}}</h3>
-            <p class="truncate-multiline">{{note.content}}</p>
-            <div class="note-buttons">
-              <button (click)="openNote(note)"><fa-icon [icon]="eye"></fa-icon> View</button>
-              <button (click)="editNote(note)"><fa-icon [icon]="penToSquare"></fa-icon> Update</button>
-              <button (click)="duplicateNote(note)"><fa-icon [icon]="copy"></fa-icon> Copy</button>
-              <button (click)="deleteNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
+          <div class="card-body card-custom d-flex flex-column justify-content-between">
+            <div class="card-data">
+              <h3>{{note.title}}</h3>
+              <p class="truncate-multiline">{{note.content}}</p>
             </div>
-            <div class="note-meta">
-              <span class="category">{{note.category}}</span>
+            <div class="card-lower">
+              <div class="note-buttons">
+                <button (click)="openNote(note)"><fa-icon [icon]="eye"></fa-icon> View</button>
+                <button (click)="editNote(note)"><fa-icon [icon]="penToSquare"></fa-icon> Update</button>
+                <button (click)="duplicateNote(note)"><fa-icon [icon]="copy"></fa-icon> Copy</button>
+                <button (click)="deleteNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
+              </div>
+              <div class="note-meta">
+                <span class="category">{{note.category}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -35,5 +39,5 @@
       </div>
     </div>
   </div>
-  
+
 </div>
