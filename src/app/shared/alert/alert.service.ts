@@ -16,6 +16,7 @@ export class AlertService {
       timer: 2500,
       timerProgressBar: true,
       showCloseButton: true,
+      confirmButtonColor: "#FF6B00",
     });
   }
 

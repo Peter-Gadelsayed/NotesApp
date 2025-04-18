@@ -19,7 +19,6 @@ export class AuthService {
       .pipe(
         tap(response => {
           this.setToken(response.token);
-          this.router.navigate(['/notes']);
         })
       );
   }
