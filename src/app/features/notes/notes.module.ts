@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotesRoutingModule } from './notes-routing.module';
 import { CreateNotesComponent } from './create-notes/create-notes.component';
@@ -25,4 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ]
 })
-export class NotesModule { }
+export class NotesModule {
+  @Input() isAuthenticated: boolean = false;
+
+}
