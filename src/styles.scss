@@ -10,6 +10,12 @@
   src: url("./assets/fonts/Merienda/Merienda-VariableFont_wght.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  src: url("./assets/fonts/OpenSans/OpenSans-VariableFont_wdth\,wght.ttf") format("truetype");
+}
+
 * {
-  font-family: "Merienda-var";
+  font-family: "Open Sans";
 }
