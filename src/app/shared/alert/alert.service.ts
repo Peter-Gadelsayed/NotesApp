@@ -13,7 +13,7 @@ export class AlertService {
       title: title,
       text: message,
       icon: "success",
-      timer: 5000,
+      timer: 2500,
       timerProgressBar: true,
       showCloseButton: true,
     });

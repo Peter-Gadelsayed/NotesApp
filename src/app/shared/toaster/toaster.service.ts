@@ -10,7 +10,7 @@ export class ToasterService {
   constructor(private toastr: ToastrService) { }
 
   // Success toaster
-  SuccessToaster(successMessage: string, headtitle: string = 'Success', time: number = 2500) {
+  SuccessToaster(successMessage: string, headtitle: string = 'Success', time: number = 2000) {
     this.toastr.success(successMessage, headtitle, {
       timeOut: time, // Toast duration
       progressBar: true, // Show progress bar
@@ -21,8 +21,8 @@ export class ToasterService {
   }
 
   // Error toaster
-  ErrorToaster(errorMessage: string, time: number = 2500) {
-    this.toastr.error(errorMessage, 'Error', {
+  ErrorToaster(errorMessage: string, headtitle: string = 'Error', time: number = 2000) {
+    this.toastr.error(errorMessage, headtitle, {
       timeOut: time, // Toast duration
       progressBar: true, // Show progress bar
       closeButton: true, // Show close button

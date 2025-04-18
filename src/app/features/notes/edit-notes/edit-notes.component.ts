@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Notes } from 'src/app/models/notes';
 import { ApiService } from '../services/api.service';
+import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
+import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 
 @Component({
   selector: 'app-edit-notes',
@@ -19,6 +21,8 @@ export class EditNotesComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private route: ActivatedRoute,
+    private spinner: SpinnerService,
+    private toaster: ToasterService,
     private router: Router
   ) {
 
@@ -53,6 +57,7 @@ export class EditNotesComponent implements OnInit {
   }
 
   loadNote(id: number) {
+    this.spinner.show(); // Show spinner
     this.apiService.getNoteById(id).subscribe(
       (response: Notes) => {
         const noteData = response;
@@ -64,9 +69,11 @@ export class EditNotesComponent implements OnInit {
           priority: noteData.priority,
           tags: noteData.tags
         });
+        this.spinner.hide(); // Hide spinner on success
       },
-      (error: Error) => {
-        console.error('Error loading note:', error);
+      (error) => {
+        this.toaster.ErrorToaster("Error Fetching Notes", error.message || "Error",);
+        this.spinner.hide(); // Hide spinner on error
       }
     );
   }
@@ -79,13 +86,16 @@ export class EditNotesComponent implements OnInit {
         id: this.noteId
       };
       this.submitted = true;
-
-
+      this.spinner.show(); // Show spinner
       this.apiService.updateNote(this.noteId, updatedNote).subscribe(
-        () => {
+        (response) => {
           this.router.navigate(['/notes/show', this.noteId]);
+          this.spinner.hide(); // Hide spinner on success
         },
-        (error: Error) => console.error('Error updating note:', error)
+        (error) => {
+          this.toaster.ErrorToaster("Error Updating Note", error.message || "Error",);
+          this.spinner.hide(); // Hide spinner on error
+        }
       );
     }
   }

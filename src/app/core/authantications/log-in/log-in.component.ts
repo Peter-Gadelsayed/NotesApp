@@ -22,7 +22,7 @@ export class LogInComponent implements OnInit {
     private fb: FormBuilder,
     private authservice: AuthService,
     private toastr: ToasterService,
-    private spinnerService: SpinnerService,
+    private spinner: SpinnerService,
     private router: Router
   ) { }
 
@@ -48,7 +48,7 @@ export class LogInComponent implements OnInit {
       return;
     }
 
-    this.spinnerService.show();
+    this.spinner.show(); // Show spinner
 
     this.authservice.login(this.loginForm.value).subscribe({
       next: (response) => {
@@ -56,14 +56,15 @@ export class LogInComponent implements OnInit {
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
-          this.router.navigate(['/notes']);   // window.location.replace('/notes');
-          this.spinnerService.hide();
-        }, 3000);
+          this.router.navigate(['/notes']);
+          // window.location.replace('/notes');
+          this.spinner.hide(); // Hide spinner on success
+        }, 2500);
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Login failed. Please try again later.';
         this.errorMessage = errorMessage;
-        this.spinnerService.hide();
+        this.spinner.hide(); // Hide spinner on error
         this.toastr.ErrorToaster(errorMessage);
       }
     });

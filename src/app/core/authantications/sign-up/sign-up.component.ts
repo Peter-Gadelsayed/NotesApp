@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,8 +24,13 @@ export class SignUpComponent {
   submitted = false;
   errorMessage!: string;
 
-  constructor(private fb: FormBuilder, private router: Router
-    , private authservice: AuthService, private toastr: ToasterService, private spinner: NgxSpinnerService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authservice: AuthService,
+    private toastr: ToasterService,
+    private spinner: SpinnerService,
+  ) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -61,8 +67,9 @@ export class SignUpComponent {
         localStorage.setItem('token', response.token);
         this.authservice.isLogged = () => true;
         setTimeout(() => {
-          this.router.navigate(['/notes']);   // window.location.replace('/notes');
-          this.spinner.hide();
+          this.router.navigate(['/notes']);
+          // window.location.replace('/notes');
+          this.spinner.hide(); // Hide spinner on success
         }, 3000);
       },
       error: (err) => {

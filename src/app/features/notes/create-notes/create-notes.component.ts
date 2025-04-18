@@ -5,6 +5,7 @@ import { ToasterService } from 'src/app/shared/toaster/toaster.service';
 import { Notes } from 'src/app/models/notes';
 import { faArrowRotateLeft, faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 
 @Component({
   selector: 'app-create-notes',
@@ -20,7 +21,13 @@ export class CreateNotesComponent implements OnInit {
   noteForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private API: ApiService, private toastr: ToasterService, private router:Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private API: ApiService,
+    private toastr: ToasterService,
+    private spinner: SpinnerService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -59,10 +66,13 @@ export class CreateNotesComponent implements OnInit {
   }
 
   postAPI(data: Notes) {
+    this.spinner.show(); // Show spinner
     this.API.postNote(data).subscribe(res => {
       this.toastr.SuccessToaster("Note Created Successfully");
+      this.spinner.hide(); // Hide spinner on success
     }, err => {
       this.toastr.ErrorToaster("Note Creation Failed");
+      this.spinner.hide(); // Hide spinner on error
       for (let error of Object.values(err.error.errors)) {
         this.toastr.ErrorToaster(`${error}`);
       }
