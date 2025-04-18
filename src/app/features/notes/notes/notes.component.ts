@@ -32,9 +32,15 @@ export class NotesComponent {
   constructor(private apiService: ApiService, private router: Router, private alert: AlertService, private toaster: ToasterService) { }
 
   ngOnInit() {
+    this.getNotes();
+  }
+
+  getNotes() {
     this.apiService.getNotes().subscribe((notes) => {
       this.notes = notes;
-    }, (error) => console.log('Error:', error)
+    }, (error) => {
+      this.toaster.ErrorToaster("Error Fetching Notes", error.message || "Error",);
+    }
     );
   }
 
@@ -61,10 +67,7 @@ export class NotesComponent {
     this.apiService.deleteNote(note.id).subscribe(res => {
       this.toaster.SuccessToaster("Note Deleted Successfully", res.message || "Deleted",);
       // Update the list after deletion
-      this.apiService.getNotes().subscribe(notes => {
-        this.notes = notes;
-      });
-
+      this.getNotes();
     }, err => {
       this.toaster.ErrorToaster("Error Deleting Note", err.message || "Error",);
     });
@@ -72,9 +75,11 @@ export class NotesComponent {
 
   duplicateNote(note: Notes) {
     // Create a new note with the same content as the original note
-    const newNote: Notes = { ...note, id: 0 }; // Assuming ID is auto-generated
+    const newNote: Notes = { ...note, id: 0 }; // ID is auto-generated
     this.apiService.postNote(newNote).subscribe(res => {
-      this.notes.push(res); // Add the duplicated note to the list
+      // this.notes.push(res); // Add the duplicated note to the list
+      // Update the list after deletion
+      this.getNotes();
       this.toaster.SuccessToaster("Note Duplicated Successfully", res.message || "Duplicated",);
     }, err => {
       this.toaster.ErrorToaster("Error Duplicating Note", err.message || "Error",);
