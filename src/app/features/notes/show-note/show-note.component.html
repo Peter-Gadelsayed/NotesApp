@@ -46,7 +46,7 @@
             <div class="note-row">
               <p class="notes-head">Priority:</p>
               <p class="notes-text">
-                <span class="priority-badge" [ngClass]="selectedNote.priority">
+                <span class="priority-badge" [ngClass]="selectedNote.priority | lowercase">
                   {{selectedNote.priority}}
                 </span>
               </p>
