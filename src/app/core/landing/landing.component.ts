@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/authantications/services/auth.service';
 import { Router } from '@angular/router';
+import { faStar} from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-landing',
@@ -8,6 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
+  
+  star = faStar;
+  items = [1,2,3,4,5,6,7,8,9,10];
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {

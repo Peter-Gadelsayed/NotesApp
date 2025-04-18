@@ -211,7 +211,7 @@
     <div class="testimonials-container">
       <div class="testimonial-card">
         <div class="testimonial-author">
-          <img src="assets/images/user-jason.jpg" alt="Jason" class="author-img">
+          <img src="../../../assets/images/user-jason.png" alt="Morgan" class="author-img">
           <div class="author-info">
             <h4>Jason</h4>
             <p>&#64;jasonbaldmen</p>
@@ -222,18 +222,14 @@
         </div>
         <div class="testimonial-footer">
           <div class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
+            <fa-icon *ngFor="let item of items" [icon]="star"></fa-icon>
           </div>
           <span class="date">12 January 2015</span>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-author">
-          <img src="assets/images/user-morgan.jpg" alt="Morgan" class="author-img">
+          <img src="../../../assets/images/user-daniel.png" alt="Morgan" class="author-img">
           <div class="author-info">
             <h4>Morgan</h4>
             <p>&#64;morganNotFreeMen</p>
@@ -245,18 +241,14 @@
         </div>
         <div class="testimonial-footer">
           <div class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+              <fa-icon *ngFor="let item of items" [icon]="star"></fa-icon>
           </div>
           <span class="date">12 January 2015</span>
         </div>
       </div>
       <div class="testimonial-card">
         <div class="testimonial-author">
-          <img src="assets/images/user-daniel.jpg" alt="Daniel" class="author-img">
+          <img src="../../../assets/images/user-morgan.png" alt="Morgan" class="author-img">
           <div class="author-info">
             <h4>Daniel</h4>
             <p>&#64;DanielaDscar</p>
@@ -268,11 +260,7 @@
         </div>
         <div class="testimonial-footer">
           <div class="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+            <fa-icon *ngFor="let item of items" [icon]="star"></fa-icon>
           </div>
           <span class="date">12 January 2015</span>
         </div>
