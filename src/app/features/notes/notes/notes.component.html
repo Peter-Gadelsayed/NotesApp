@@ -18,7 +18,7 @@
             <button (click)="openNote(note)"><fa-icon [icon]="eye"></fa-icon> View</button>
             <button (click)="editNote(note)"><fa-icon [icon]="penToSquare"></fa-icon> Update</button>
             <button (click)="duplicateNote(note)"><fa-icon [icon]="copy"></fa-icon> Copy</button>
-            <button (click)="delNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
+            <button (click)="deleteNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
           </div>
           <div class="note-meta">
             <span class="category">{{note.category}}</span>
