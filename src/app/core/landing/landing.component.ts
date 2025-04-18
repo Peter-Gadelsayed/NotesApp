@@ -12,7 +12,7 @@ export class LandingComponent {
 
   navigateToCreate() {
     if (this.authService.isLogged()) {
-      this.router.navigate(['/create-note']);
+      this.router.navigate(['/notes/create']);
     } else {
       this.router.navigate(['/login']);
     }

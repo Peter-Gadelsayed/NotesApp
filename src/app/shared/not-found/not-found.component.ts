@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-not-found',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-
+  // FontAwesome Icons
+  exclamationTriangle = faExclamationTriangle;
 }

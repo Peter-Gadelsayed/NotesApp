@@ -20,7 +20,11 @@ export class NavBarComponent implements OnInit, OnChanges {
   isHomeActive = false;
   isCreateActive = false;
 
-  constructor(private router: Router, private authservice: AuthService, private alert: AlertService) { }
+  constructor(
+    private router: Router,
+    private authservice: AuthService,
+    private alert: AlertService
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isAuthenticated']) {
