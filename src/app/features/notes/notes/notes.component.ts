@@ -46,9 +46,9 @@ export class NotesComponent {
     this.router.navigate(['/notes/create'])
   }
 
-  delNote(note: Notes) {
+  deleteNote(note: Notes) {
     this.alert.confirm('Delete Note ?', `Are you sure you want to delete this note "${note.title}" ?`, 'Delete', 'Keep', () => {
-      this.delNoteFunction(note);
+      this.deleteNoteFunction(note);
     });
   }
 
@@ -56,7 +56,7 @@ export class NotesComponent {
     this.router.navigate(['/notes/edit/', note.id])
   }
 
-  delNoteFunction(note: Notes) {
+  deleteNoteFunction(note: Notes) {
     // Delete the Note by its ID
     this.apiService.deleteNote(note.id).subscribe(res => {
       this.toaster.SuccessToaster("Note Deleted Successfully", res.message || "Deleted",);

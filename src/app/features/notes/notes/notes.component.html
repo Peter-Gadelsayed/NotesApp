@@ -15,10 +15,10 @@
           <h3>{{note.title}}</h3>
           <p class="truncate-multiline">{{note.content}}</p>
           <div class="note-buttons">
-            <button (click)="openNote(note)"><fa-icon [icon]="eye"></fa-icon> View</button>
+            <button (click)="openNote(note)" title="View Note"><fa-icon [icon]="eye"></fa-icon> View</button>
             <button (click)="editNote(note)"><fa-icon [icon]="penToSquare"></fa-icon> Edit</button>
             <button (click)="duplicateNote(note)"><fa-icon [icon]="copy"></fa-icon> Copy</button>
-            <button (click)="delNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
+            <button (click)="deleteNote(note)"><fa-icon [icon]="trash"></fa-icon> Delete</button>
           </div>
           <div class="note-meta">
             <span class="category">{{note.category}}</span>
@@ -30,7 +30,9 @@
   <div class="my-2 my-lg-3" *ngIf="notes.length === 0">
     <div class="alert alert-info text-center" role="alert">
       <h4 class="alert-heading">No Notes found!</h4>
-      <p>Click on the New button to create a new note.</p>
+      <p>Click on the <a (click)="createNote()" class="btn btn-success" title="New Note"><fa-icon
+            [icon]="plus"></fa-icon>
+          New</a> to create a new note.</p>
     </div>
   </div>
 </div>
