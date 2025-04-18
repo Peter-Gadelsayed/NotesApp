@@ -6,10 +6,12 @@
 }
 
 @font-face {
-  font-family: "Merienda-var";
-  src: url("./assets/fonts/Merienda/Merienda-VariableFont_wght.ttf") format("truetype");
+  font-family: "jost-var";
+  src: url("./assets/fonts/Jost/Jost-VariableFont_wght.ttf") format("truetype");
 }
 
 * {
-  font-family: "Merienda-var";
+  font-family: "jost-var";
+  font-weight: 400;
+  font-size: 1rem;
 }
