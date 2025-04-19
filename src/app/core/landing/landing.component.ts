@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/authantications/services/auth.service';
 import { Router } from '@angular/router';
 import { faArrowLeft, faArrowRight, faBullseye, faChevronLeft, faChevronRight, faPencilAlt, fas, faStar, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 
 
@@ -21,6 +22,10 @@ export class LandingComponent {
   pencilAlt = faPencilAlt;
   bullseye = faBullseye;
   syncAlt = faSyncAlt;
+  facebook = faFacebookF;
+  twitter = faTwitter;
+  instagram = faInstagram;
+  linkedin = faLinkedinIn;
 
 
   // Define the items array with numbers from 1 to 10
